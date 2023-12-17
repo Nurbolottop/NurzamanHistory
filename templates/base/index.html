@@ -1,0 +1,956 @@
+{% extends 'include/homepage.html' %}
+{% load static %}
+{% block content %}
+
+   {% include 'include/header.html'%}
+    <header style="background: center;background-image: url({{slide.image.url}});" class="header">
+        <nav class="nav" style="    background: rgba(0, 0, 0, 0.30);">
+            <div class="burger" id="menuButton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="12" viewBox="0 0 16 12" fill="none">
+                    <path d="M1 1H15" stroke="white" stroke-linecap="round" />
+                    <path d="M1 6H15" stroke="white" stroke-linecap="round" />
+                    <path d="M1 11H15" stroke="white" stroke-linecap="round" />
+                </svg>
+                <p>Меню</p>
+            </div>
+            <div class="logo">
+                <img src="{{settings.logo_complex.url}}" alt="">
+            </div>
+            <div></div>
+        </nav>
+
+        <div class="headerFoot">
+            <h1>
+                {{slide.title}}
+            </h1>
+            <div class="socialMedia">
+                <img id="openModal" src="{% static 'assets/svg/Group 4.svg' %}" alt="">
+                <img src="{% static 'assets/svg/Group 6.svg' %}" alt="">
+            </div>
+        </div>
+    </header>
+    <section id="section1" style="background-image: url({% static 'assets/img/Rectangle 3.png' %});" class="prideSection">
+        <div class="prideHead">
+            <img src="{{settings.logo.url}}" alt="">
+            <h1>
+                Нам есть
+                <u>
+                    чем гордиться
+                </u>
+            </h1>
+        </div>
+        <div class="prideTable">
+            <div class="borderTopNone borderRightNone">
+                <h1>с 2015</h1>
+                <h2>ГОДА</h2>
+                <br>
+                <h3>работаем на рынке строительства элитной недвижимости</h3>
+            </div>
+            <div class="borderTopNone borderRightNone" >
+                <h4>свыше</h4>
+                <h1>11</h1>
+                <h2>ОБЪЕКТОВ</h2>
+                <br>
+                <h3>построенные в Бишкеке и Оше</h3>
+            </div>
+            <div class="borderTopNone borderRightNone">
+                <h4>более</h4>
+                <h1>120 000 м²</h1>
+                <h2>ЗАСТРОЕНО</h2>
+                <br>
+                <h3>только качественными материалами</h3>
+            </div>
+            <div class="borderBottomNone borderRightNone">
+                <h1>126</h1>
+                <h2>СОТРУДНИКОВ</h2>
+                <br>
+                <h3>из профессионалов, которые формировалась годами</h3>
+            </div>
+            <div class="borderBottomNone borderRightNone">
+                <h4>более</h4>
+                <h1>3 000</h1>
+                <h2>ЖИЛЬЦОВ</h2>
+                <br>
+                <h3>выбрали нас и остались довольны</h3>
+            </div>
+            <div class="borderBottomNone borderRightNone">
+                <h1>10 и 1</h1>
+                <h2>ЗА СПИНОЙ</h2>
+                <br>
+                <h3>10 жилых комплексов и 1 торговый центр</h3>
+            </div>
+        </div>
+    </section>
+    <section id="section2" class="projekts">
+        <div class="prideHead">
+
+            <h1>
+                НАШИ
+                <u>
+                    ПРОЕКТЫ
+                </u>
+            </h1>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="owl-carousel owl-theme">
+            {% for partners in partners %}
+            <div class="projektCaruselItem">
+                <img href = "{{partners.url}}" src="{{partners.image.url}}" alt="">
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+    </section>
+    <section id="section3" class="direktors">
+        <div class="prideHead">
+
+            <h1>
+                Обращение
+                <u>
+                    директоров
+                </u>
+            </h1>
+        </div>
+        <div class="direktorsMain">
+            <div class="direktorsImage"> <img src="{{about.image.url}}" alt=""></div>
+     
+            <div>
+                <p>
+                    {{about.descriptions|safe}}
+                </p>
+            </div>
+
+        </div>
+    </section>
+    <section class="sliderSection">
+        <div class="slider">
+            <div class="slide_viewer">
+                <div class="slide_group">
+                    <div class="slide">
+                        <div class="sliderItem">
+                            <div class="sliderItemImage">
+                                <img src="{% static 'assets/img/Rectangle 32.png' %}" alt="">
+                            </div>
+                            <div class="sliderItemRight">
+                                <div class="prideHead">
+
+                                    <h1>
+                                        Что такое
+                                        <u>
+                                            Европейский квартал </u>
+                                    </h1>
+                                    <br><br><br><br><br>
+                                    <div>
+                                        <p>
+                                            Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.
+                                            Lorem Ipsum является
+                                            стандартной "рыбой" для текстов на латинице с начала XVI века. В то время
+                                            некий безымянный печатник
+                                            создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для
+                                            распечатки образцов.
+                                        </p>
+                                        <br><br>
+                                        <p>
+                                            Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.
+                                            Lorem Ipsum является
+                                            стандартной "рыбой" для текстов на латинице с начала XVI века.
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="sliderItem">
+                            <div class="sliderItemImage">
+                                <img src="{% static 'assets/img/Rectangle 32.png' %}" alt="">
+                            </div>
+                            <div class="sliderItemRight">
+                                <div class="prideHead">
+
+                                    <h1>
+                                        Что такое
+                                        <u>
+                                            Европейский квартал </u>
+                                    </h1>
+                                    <br><br><br><br><br>
+                                    <div>
+                                        <p>
+                                            Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.
+                                            Lorem Ipsum является
+                                            стандартной "рыбой" для текстов на латинице с начала XVI века. В то время
+                                            некий безымянный печатник
+                                            создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для
+                                            распечатки образцов.
+                                        </p>
+                                        <br><br>
+                                        <p>
+                                            Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.
+                                            Lorem Ipsum является
+                                            стандартной "рыбой" для текстов на латинице с начала XVI века.
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="sliderItem">
+                            <div class="sliderItemImage">
+                                <img src="{% static 'assets/img/Rectangle 32.png' %}" alt="">
+                            </div>
+                            <div class="sliderItemRight">
+                                <div class="prideHead">
+
+                                    <h1>
+                                        Что такое
+                                        <u>
+                                            Европейский квартал </u>
+                                    </h1>
+                                    <br><br><br><br><br>
+                                    <div>
+                                        <p>
+                                            Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.
+                                            Lorem Ipsum является
+                                            стандартной "рыбой" для текстов на латинице с начала XVI века. В то время
+                                            некий безымянный печатник
+                                            создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для
+                                            распечатки образцов.
+                                        </p>
+                                        <br><br>
+                                        <p>
+                                            Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне.
+                                            Lorem Ipsum является
+                                            стандартной "рыбой" для текстов на латинице с начала XVI века.
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div><!-- End // .slider -->
+        <div class="directional_nav">
+            <div class="previous_btn" title="Previous">
+                <img src="{% static 'assets/svg/Group 15.svg' %}" alt="">
+            </div>
+            <div class="next_btn" title="Next">
+                <img src="{% static 'assets/svg/Group 14.svg' %}" alt="">
+            </div>
+
+        </div>
+
+        <div class="slide_buttons">
+        </div>
+        <div class="pogination">
+            <p id="curentPage"></p>/ <p id="totalPages"></p>
+        </div>
+        <!-- End // .directional_nav -->
+    </section>
+    <section id="section4">
+        <div style="padding: 13% 0 10% 0" class="prideHead">
+
+            <h1>
+                Жилой комплекс
+                <u>
+                    Европейский квартал
+                </u>
+            </h1>
+        </div>
+        <div class="servisesSection1"
+            style="background: center; background-image: url({% static 'assets/img/Rectangle 39.png' %}) ">
+            <div class="leftSectionOFSevises">
+                <div class="glassCard">
+                    <p>Раскинется на площади в</p>
+                    <br>
+                    <h2>
+                        3 га
+                    </h2>
+                </div>
+                <div class="glassCard">
+                    <h1>Приятный и ухоженный двор</h1>
+                    <p>Создает атмосферу комфорта и расслабления, где вы сможете проводить свободное время с семьей и
+                        друзьями, наслаждаясь великолепным видом на город и природу.</p>
+                </div>
+                <div class="glassCard">
+                    <h1>Спортивная зона для
+                        взрослых, воркаут площадка</h1>
+                </div>
+                <div class="glassCard">
+                    <ul>
+                        <li>Бассейн и зона отдыха</li>
+                        <li>
+                            Тренажерный зал
+                        </li>
+                        <li>Множество мест для отдыха и занятий спортом</li>
+                    </ul>
+                </div>
+                <div style="margin-left: 25rem;" class="glassCard">
+                    <h1>Фонтан</h1>
+                </div>
+            </div>
+            <div class="RightSectionOFSevises">
+                <div class="glassCard">
+
+                    <h2>
+                        69%
+                    </h2>
+                    <p>от общей территории будет использовано для создания комфортных условий</p>
+                </div>
+                <div style="margin-right: 5rem;" class="glassCard">
+
+                    <h2>
+                        166
+                    </h2>
+                    <p>гостевых парковочных мест</p>
+                </div>
+                <div style="margin-right: 5rem;" class="glassCard">
+
+                    <h2>
+                        172
+                    </h2>
+                    <p>подземных парковочных мест</p>
+                </div>
+                <div style="margin-right: 7rem;" class="glassCard">
+                    <h1>Беговая дорожка</h1>
+                </div>
+                <div style="margin-right: 7rem;" class="glassCard">
+                    <h1>Удобная парковка для автомобилей</h1>
+                    <p>Удобная парковка для автомобилей</p>
+                </div>
+                <div style="margin-right: 15rem;" class="glassCard">
+                    <h1>Мечеть площадью 200 м2</h1>
+                    <p>Соблюдение религиозных обрядов и традиций станет гораздо более удобным и приятным в этом
+                        комфортном и безопасном пространстве</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div style="padding: 13% 0 1rem 0" class="prideHead">
+
+            <h1>
+                Галерея
+                <u>
+                    с фотографиями
+                </u>
+            </h1>
+        </div>
+        <div class="alalalal">
+            <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является
+                стандартной "рыбой" для текстов на латинице с начала XVI века.</p>
+        </div>
+        <br><br><br>
+    </section>
+    <section class="galery">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="galaryItem">
+                        <img src="{% static 'assets/img/Rectangle 27.png' %}" alt="">
+                        <div class="backDrop">
+                            
+                        </div>
+                    </div>
+                    <div class="galaryNavigation">
+                        <div class="swiper-button-prev">
+                            <img src="{% static 'assets/svg/Group 15.svg' %}" alt="">
+                        </div>
+                        <div class="swiper-button-next">
+                            <img src="{% static 'assets/svg/Group 14.svg' %}" alt="">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="galaryItem">
+                        <img src="{% static 'assets/img/Rectangle 27.png' %}" alt="">
+                        <div class="backDrop">
+
+                        </div>
+                    </div>
+                    <div class="galaryNavigation">
+                        <div class="swiper-button-prev">
+                            <img src="{% static 'assets/svg/Group 15.svg' %}" alt="">
+                        </div>
+                        <div class="swiper-button-next">
+                            <img src="{% static 'assets/svg/Group 14.svg' %}" alt="">
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <!-- Add Pagination -->
+
+
+        </div>
+        <br>
+        <br>
+        <div class="swiper-pagination"></div>
+    </section>
+    <section>
+        <div style="padding: 13% 0 1rem 0" class="prideHead">
+
+            <h1>
+                Сделай
+                <u>
+                    свой выбор
+                </u>
+            </h1>
+        </div>
+
+        <br><br><br>
+    </section>
+    <section id="section5" class="sectionINindex" style="padding: 27px; display: flex; justify-content: space-between;">
+        <div class="aboutFlat">
+            <h1>2-комнатная квартира</h1>
+
+            <div class="roomItem">
+                <h1>Общая площадь квартиры</h1>
+
+                <h2>
+                    / 85, 63 м2
+                </h2>
+            </div>
+            <div class="roomItem">
+                <h1>Ванная</h1>
+
+                <h2>
+                    / 4, 25 м2
+                </h2>
+            </div>
+            <div class="roomItem">
+                <h1>холл</h1>
+
+                <h2>
+                    / 13, 16 м2
+                </h2>
+            </div>
+            <div class="roomItem">
+                <h1>Ванная 2</h1>
+
+                <h2>
+                    / 13, 16 м2
+                </h2>
+            </div>
+            <div class="roomItem">
+                <h1>Гардеробная</h1>
+
+                <h2>
+                    / 13, 16 м2
+                </h2>
+            </div>
+            <div class="roomItem">
+                <h1>главная спальня</h1>
+
+                <h2>
+                    / 13, 16 м2
+                </h2>
+            </div>
+        </div>
+        <div class="flatImage">
+            <div class="backImage">
+                <img src="{% static 'assets/img/image 4.png' %}" alt="">
+            </div>
+            <a href="./catalog.html">
+                <div class="toFlatButton">Выбрать квартиру</div>
+            </a>
+
+        </div>
+    </section>
+    <section>
+        <div style="padding: 13% 0 1rem 0" class="prideHead">
+
+            <h1>
+                Преимущества
+                <u>
+                    номер один
+                </u>
+            </h1>
+        </div>
+        <div class="alalalal">
+            <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является
+                стандартной "рыбой" для текстов на латинице с начала XVI века.</p>
+        </div>
+        <br><br><br>
+    </section>
+    <section class="galery">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="galaryItem">
+                        <img src="{% static 'assets/img/Rectangle 27.png' %}" alt="">
+                        <div class="backDrop">
+
+                        </div>
+                    </div>
+                    <div class="galaryNavigationn">
+                        <div class="swiper-button-prev">
+                            <img src="{% static 'assets/svg/Group 15.svg' %}" alt="">
+                        </div>
+                        <div class="swiper-button-next">
+                            <img src="{% static 'assets/svg/Group 14.svg' %}" alt="">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="galaryItem">
+                        <img src="{% static 'assets/img/Rectangle 27.png' %}" alt="">
+                        <div class="backDrop">
+
+                        </div>
+                    </div>
+                    <div class="galaryNavigation" style="flex-direction: column; align-items: start;">
+                        <h1>Преимущества номер один</h1>
+                        <br>
+                        <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum
+                            является стандартной</p>
+                    </div>
+                    <div class="galaryNavigationn">
+                        <div class="swiper-button-prev">
+                            <img src="{% static 'assets/svg/Group 15.svg' %}" alt="">
+                        </div>
+                        <div class="swiper-button-next">
+                            <img src="{% static 'assets/svg/Group 14.svg' %}" alt="">
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <!-- Add Pagination -->
+
+
+        </div>
+
+    </section>
+
+    <section>
+        <div style="padding: 13% 0 1rem 0" class="prideHead">
+
+            <h1>
+                Преимущества
+                <u>
+                    номер два
+                </u>
+            </h1>
+        </div>
+        <div class="alalalal">
+            <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является
+                стандартной "рыбой" для текстов на латинице с начала XVI века.</p>
+        </div>
+        <br><br><br>
+    </section>
+    <section style="padding: 27px; overflow: hidden;">
+        <div class="swiper-container2">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <div class="galaryItem">
+                        <img src="{% static 'assets/img/Rectangle 27.png' %}" alt="">
+                        <div class="backDrop">
+
+                        </div>
+                    </div>
+                    <div class="galaryNavigation" style="flex-direction: column; align-items: start;">
+                        <h1>Преимущества номер один</h1>
+                        <br>
+                        <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum
+                            является стандартной</p>
+                    </div>
+
+                </div>
+                <div class="swiper-slide">
+                    <div class="galaryItem">
+                        <img src="{% static 'assets/img/Rectangle 27.png' %}" alt="">
+                        <div class="backDrop">
+
+                        </div>
+                    </div>
+                    <div class="galaryNavigation" style="flex-direction: column; align-items: start;">
+                        <h1>Преимущества номер один</h1>
+                        <br>
+                        <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum
+                            является стандартной</p>
+                    </div>
+
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="galaryItem">
+                        <img src="{% static 'assets/img/Rectangle 27.png' %}" alt="">
+                        <div class="backDrop">
+
+                        </div>
+                    </div>
+                    <div class="galaryNavigation" style="flex-direction: column; align-items: start;">
+                        <h1>Преимущества номер один</h1>
+                        <br>
+                        <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum
+                            является стандартной</p>
+                    </div>
+
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="galaryItem">
+                        <img src="{% static 'assets/img/Rectangle 27.png' %}" alt="">
+                        <div class="backDrop">
+
+                        </div>
+                    </div>
+                    <div class="galaryNavigation" style="flex-direction: column; align-items: start;">
+                        <h1>Преимущества номер один</h1>
+                        <br>
+                        <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum
+                            является стандартной</p>
+                    </div>
+
+                </div>
+
+
+
+
+
+            </div>
+            <!-- Add Pagination -->
+
+            <div class="pafinationServoice">
+                <div class="swiper-button-prev2">
+                    <img src="{% static 'assets/svg/Group 15.svg' %}" alt="">
+                </div>
+                <h1>11/11</h1>
+                <div class="swiper-button-next2">
+                    <img src="{% static 'assets/svg/Group 14.svg' %}" alt="">
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <section>
+        <div style="padding: 13% 0 1rem 0" class="prideHead">
+
+            <h1>
+                Окружение
+                <u>
+                    Европейского квартала
+                </u>
+            </h1>
+        </div>
+
+        <br><br><br>
+    </section>
+    <section class="sliderSection">
+        <div class="slider">
+            <div class="slide_viewer">
+                <div class="slide_group">
+                    <div class="slide">
+                        <div class="sliderItem">
+                            <div class="sliderItemImage">
+                                <img src="{% static 'assets/img/Rectangle 32.png' %}" alt="">
+                            </div>
+                            <div class="sliderItemRight">
+                                <div class="prideHead" style="    align-items: start;">
+
+                                    <h1>
+                                        Школы и
+                                        университеты
+
+                                    </h1>
+                                    <br><br><br><br><br>
+                                    <div>
+                                        <div class="shools">
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="sliderItem">
+                            <div class="sliderItemImage">
+                                <img src="{% static 'assets/img/Rectangle 32.png' %}" alt="">
+                            </div>
+                            <div class="sliderItemRight">
+                                <div class="prideHead" style="    align-items: start;">
+
+                                    <h1>
+                                        Школы и
+                                        университеты
+
+                                    </h1>
+                                    <br><br><br><br><br>
+                                    <div>
+                                        <div class="shools">
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="sliderItem">
+                            <div class="sliderItemImage">
+                                <img src="{% static 'assets/img/Rectangle 32.png' %}" alt="">
+                            </div>
+                            <div class="sliderItemRight">
+                                <div class="prideHead" style="    align-items: start;">
+
+                                    <h1>
+                                        Школы и
+                                        университеты
+
+                                    </h1>
+                                    <br><br><br><br><br>
+                                    <div>
+                                        <div class="shools">
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <div class="sliderItem">
+                            <div class="sliderItemImage">
+                                <img src="{% static 'assets/img/Rectangle 32.png' %}" alt="">
+                            </div>
+                            <div class="sliderItemRight">
+                                <div class="prideHead" style="    align-items: start;">
+
+                                    <h1>
+                                        Школы и
+                                        университеты
+
+                                    </h1>
+                                    <br><br><br><br><br>
+                                    <div>
+                                        <div class="shools">
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+                                            <div>
+                                                <h1>Школа № 3</h1>
+                                                <p>10 минут на авто, 5 минут пешком</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+        </div><!-- End // .slider -->
+        <div class="directional_nav">
+            <div class="previous_btn" title="Previous">
+                <img src="{% static 'assets/svg/Group 15.svg' %}" alt="">
+            </div>
+            <div class="next_btn" title="Next">
+                <img src="{% static 'assets/svg/Group 14.svg' %}" alt="">
+            </div>
+
+        </div>
+
+        <div class="slide_buttons">
+        </div>
+        <div class="pogination">
+            <p id="curentPage"></p>/ <p id="totalPages"></p>
+        </div>
+        <!-- End // .directional_nav -->
+    </section>
+    <section>
+        <div class="betwenHead">
+            <div>
+                <h1>Ул.Что такое </h1>
+                <h2>Lorem Ipsum</h2>
+            </div>
+            <div>
+                <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является
+                    стандартной "рыбой" для текстов на латинице с начала XVI века.</p>
+                <br>
+                <p>Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в
+                    электронный дизайн.</p>
+            </div>
+        </div>
+    </section>
+    <section style="padding: 27px; position: relative;">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12131.108662269386!2d72.77061313390732!3d40.524416158728336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bdadba4c64ab71%3A0xbbf2012b56aa562c!2z0JrRi9GA0LPRi9C30YHRgtCw0L0g0LrQuNC90L7RgtC10LDRgtGA0Ys!5e0!3m2!1sru!2skg!4v1702478126665!5m2!1sru!2skg"
+            width="100%" height="600px" style="border:0;    filter: grayscale(100%);" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </section>
+    <br><br><br><br>
+    <section id="section6" class="form">
+        <form class="formSection">
+            <h1>Заказать
+                обратный Звонок</h1>
+            <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати</p>
+            <input placeholder="Введите имя" class="Forminput" type="text">
+
+            <input placeholder="Введите номер" class="Forminput" type="text">
+            <div class="checkbox">
+                <input type="checkbox" name="" id="">
+                <p>Я даю согласие на обработку моих персональных данных согласно политике конфиденциальности</p>
+            </div>
+            <button class="formButton">Заказать звонок</button>
+        </form>
+        <div class="formImager">
+            <img src="{% static 'assets/img/Rectangle 27 (2).png' %}" alt="">
+
+        </div>
+    </section>
+    <br><br><br><br>
+    {% include 'include/footer.html' %}
+    <div style="display: none;" id="modal">
+        <div class="modalContainer"></div>
+        <div class="modal1">
+            <div class="madalHead">
+                <h1>Заказать звонок</h1>
+                <svg id="closeModal" style="cursor: pointer;" xmlns="http://www.w3.org/2000/svg" width="29" height="29"
+                    viewBox="0 0 29 29" fill="none">
+                    <line x1="7.07234" y1="7.07024" x2="21.2145" y2="21.2124" stroke="#909090" stroke-width="2" />
+                    <line x1="21.213" y1="7.07039" x2="7.07083" y2="21.2125" stroke="#909090" stroke-width="2" />
+                </svg>
+            </div>
+
+
+            <form class="modalForm">
+                <input class="modalInput" type="text" placeholder="Ваше имя">
+
+                <input class="modalInput" type="text" placeholder="Ваш номер телефона">
+
+
+                <br><br>
+                <div>
+                    <input type="checkbox" name="" id="">
+                    Я согласен с политикой конфиденциальности
+                </div>
+                <br><br>
+                <button>Отправить</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
