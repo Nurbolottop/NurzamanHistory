@@ -1,5 +1,7 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from django_resized.forms import ResizedImageField 
+
 # Create your models here.
 
 class Settings(models.Model):
@@ -11,14 +13,22 @@ class Settings(models.Model):
         verbose_name="Информационный текст",
         blank=True,null=True
     )
-    logo = models.ImageField(
-        upload_to="logo/",
-        verbose_name="Логотип для темного фона"
+    logo = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='logo/',
+        verbose_name="Фотография",
+        blank = True, null = True
     )
-    logo_complex = models.ImageField(
-        upload_to="logo/",
-        verbose_name="Логотип для темного фона"
+
+    logo_complex = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='logo/',
+        verbose_name="Фотография",
+        blank = True, null = True
     )
+
     email = models.EmailField(
         max_length=255,
         verbose_name='Почта'
@@ -50,6 +60,8 @@ class Settings(models.Model):
             verbose_name = "Основная настройка"
             verbose_name_plural = "Основные настройки"
 
+################################################################################################################################################################################
+
 class SettingsPhone(models.Model):
     settings = models.ForeignKey(Settings, related_name='phone_title', on_delete=models.CASCADE)
     phone = models.CharField(
@@ -59,12 +71,17 @@ class SettingsPhone(models.Model):
     class Meta:
         unique_together = ('settings', 'phone')
 
+################################################################################################################################################################################
 
 class About(models.Model):
-    image =  models.ImageField(
-        upload_to="about_image/",
-        verbose_name="Фотография"
+    image =  ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='about_image/',
+        verbose_name="Фотография",
+        blank = True, null = True
     )
+
     descriptions = RichTextField(
         verbose_name="Информационный текст",
         blank=True,null=True
@@ -75,3 +92,32 @@ class About(models.Model):
     class Meta:
             verbose_name = "О нас"
             verbose_name_plural = "О нас"
+
+################################################################################################################################################################################
+
+class Gallery(models.Model):
+    title = models.CharField(
+         max_length = 255,
+         verbose_name = "Название"
+    )
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+            verbose_name = "Галерея"
+            verbose_name_plural = "Галерея"
+
+class GalleryImage(models.Model):
+    settings = models.ForeignKey(Gallery, related_name='gallery_image', on_delete=models.CASCADE)
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='gallery/',
+        verbose_name="Фотография",
+        blank = True, null = True
+    )
+
+    class Meta:
+        unique_together = ('settings', 'image')
+
+################################################################################################################################################################################
