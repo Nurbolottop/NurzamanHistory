@@ -6,8 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'assets/styles/style.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/styles/swiperStyle.css' %}" />
-    
+    <link rel="stylesheet" href="{% static 'assets/styles/swiperStyle.css' %}" /> 
     <title>Nurzaman</title>
   </head>
 
@@ -280,7 +279,7 @@
         </div>
       </div>
       <div class="flatList">
-        {% for apartment in filtered_apartments %}
+        {% for apartment in apartments %}
         <a href="{% url 'planing' apartment.id %}">
           <div class="flatListCard">
             <div class="cardHead">
@@ -292,7 +291,7 @@
             {% endif %}
             <br />
             <div class="cardFlatImage">
-              <img src="{{apartment.layote.url}}" alt="" />
+              <img src="{{apartment.layote.url}}" style="max-width:350px;"              alt="" />
             </div>
             <br />
             <div class="cardFlatInf">
@@ -319,9 +318,11 @@
         {% endfor %}
       </div>
     </div>
-    <div class="moreFlatCard">
-      Посмотреть еше квартиры</p>
-    </div>
+    {% if apartments.has_next %}
+        <div class="moreFlatCard">
+            <a href="?page={{ apartments.next_page_number }}">Посмотреть еще квартиры</a>
+        </div>
+    {% endif %}
 
     <br /><br />
     <div class="h100"></div>
@@ -333,6 +334,5 @@
 
     <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
     <script src="{% static 'assets/js/script.js' %}"></script>
-    
   </body>
 </html>

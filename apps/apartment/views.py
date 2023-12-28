@@ -4,6 +4,7 @@ from apps.contacts.models import Contact,ContactInfo
 from apps.base.models import Settings
 from apps.apartment import models
 from apps.telegram_bot.views import get_text
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -14,30 +15,35 @@ def catalog(request):
     # категории квартир
     categories = models.Category.objects.all()
     category_id = request.GET.get('category')
-    filtered_apartments = models.Apartment.objects.all()
+    apartments = models.Apartment.objects.all()
 
     # фильтрация квартир по категории
     if category_id:
-        filtered_apartments = filtered_apartments.filter(category__id=category_id)
+        apartments = apartments.filter(category__id=category_id)
 
     # комнаты
     rooms = models.Rooms.objects.all()
     rooms_id = request.GET.get("room")
 
     # фильтрация отфильтрованных квартир по комнатам
-    if rooms_id:
-        filtered_apartments = filtered_apartments.filter(room_id=rooms_id)
+    items_per_page = 4
 
-    # фильтрация квартир по цене
-    min_price_param = request.GET.get('min_price')
-    if min_price_param is not None:
-        try:
-            user_prices = min_price_param.replace(" ", "").split("-")
-            min_price = int(user_prices[0])
-            max_price = int(user_prices[1])
-            filtered_apartments = filtered_apartments.filter(price__range=(min_price, max_price))
-        except (ValueError, IndexError):
-            pass
+    # Создание объекта Paginator
+    paginator = Paginator(apartments, items_per_page)
+
+    # Получение номера текущей страницы из GET-параметра
+    page = request.GET.get('page')
+
+    try:
+        # Получение объекта Page для текущей страницы
+        apartments = paginator.page(page)
+    except PageNotAnInteger:
+        # Если 'page' не является целым числом, отображаем первую страницу
+        apartments = paginator.page(1)
+    except EmptyPage:
+        # Если 'page' больше максимального номера страницы, отображаем последнюю страницу
+        apartments = paginator.page(paginator.num_pages)
+        apartments = paginator.page(paginator.num_pages)
 
     # контактная информация
     contactinfo = ContactInfo.objects.latest('id')
@@ -84,7 +90,6 @@ def planing(request,id):
     #apartment
     apartment = models.Apartment.objects.get(id=id)
     apartment_slide = models.Apartment.objects.all().order_by('?')[:5]
-
 
     #contacts
     contactinfo = ContactInfo.objects.latest('id')
