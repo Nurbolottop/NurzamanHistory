@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'assets/styles/style.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/styles/swiperStyle.css' %}" />
+    
     <title>Nurzaman</title>
   </head>
 
@@ -154,8 +155,8 @@
             <br /><br />
             <div>
               <div class="range-slider">
-                <input type="range" min="1" max="100" step="1" value="0" class="range-slider__input" />
-                <input type="range" min="1" max="100" step="1" value="100" class="range-slider__input" />
+                <input type="range" id="min_price" name="min_price"  min="1" max="100" step="1" value="0000" class="range-slider__input" />
+                <input type="range"  id="max_price" name="max_price"min="1" max="100" step="1" value="100000" class="range-slider__input" />
                 <div class="range-slider__display">
                   <!-- This node is optional and only used to display the current values -->
                 </div>
@@ -273,8 +274,8 @@
                 clip-rule="evenodd"
                 d="M5.54575 6.29675C5.35375 6.29675 5.16175 6.22375 5.01575 6.07675L0.21975 1.27975C-0.07325 0.98675 -0.07325 0.51275 0.21975 0.21975C0.51375 -0.07325 0.98775 -0.07325 1.27975 0.21975L6.07575 5.01675C6.36875 5.30975 6.36875 5.78375 6.07575 6.07675C5.92975 6.22375 5.73675 6.29675 5.54575 6.29675Z"
                 fill="black"
-              /></svg
-            >Сбросить фильтры
+              /></svg 
+            ><a href = {% url 'catalog' %} >Сбросить фильтры </a>
           </div>
         </div>
       </div>
@@ -319,7 +320,7 @@
       </div>
     </div>
     <div class="moreFlatCard">
-      <p>Посмотреть еше квартиры</p>
+      Посмотреть еше квартиры</p>
     </div>
 
     <br /><br />
@@ -332,5 +333,6 @@
 
     <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
     <script src="{% static 'assets/js/script.js' %}"></script>
+    
   </body>
 </html>

@@ -27,6 +27,16 @@ def catalog(request):
     if rooms_id:
         filtered_apartments = filtered_apartments.filter(room_id=rooms_id)
 
+    # фильтрация квартир по цене
+    min_price_param = request.GET.get('min_price')
+    if min_price_param is not None:
+        try:
+            user_prices = min_price_param.replace(" ", "").split("-")
+            min_price = int(user_prices[0])
+            max_price = int(user_prices[1])
+            filtered_apartments = filtered_apartments.filter(price__range=(min_price, max_price))
+        except (ValueError, IndexError):
+            pass
 
     # контактная информация
     contactinfo = ContactInfo.objects.latest('id')
@@ -37,10 +47,10 @@ def catalog(request):
             number = request.POST.get('number')
             consent = request.POST.get('consent') == 'on'  # Проверка, что чекбокс был отмечен
             if consent:
-                contact = Contact.objects.create(name =name, email = email,number = number)
+                contact = Contact.objects.create(name=name, email=email, number=number)
                 send_mail(
                     f'{name}',
-                    f'Здравствуйте {name},Спасибо за обратную связь, Мы скоро свами свяжемся. Ваша почта: {email}',
+                    f'Здравствуйте {name}, Спасибо за обратную связь, Мы скоро свами свяжемся. Ваша почта: {email}',
                     "noreply@somehost.local",
                     [email])
                 return redirect('index')
@@ -50,16 +60,15 @@ def catalog(request):
             number = request.POST.get('number2')
             consent = request.POST.get('consent2') == 'on'  # Проверка, что чекбокс был отмечен
             if consent:
-                contact = Contact.objects.create(name =name, email = email,number = number)
+                contact = Contact.objects.create(name=name, email=email, number=number)
                 send_mail(
                     f'{name}',
-                    f'Здравствуйте {name},Спасибо за обратную связь, Мы скоро свами свяжемся. Ваша почта: {email}',
+                    f'Здравствуйте {name}, Спасибо за обратную связь, Мы скоро свами свяжемся. Ваша почта: {email}',
                     "noreply@somehost.local",
                     [email])
-            
                 return redirect('index')
 
-    return render(request,'catalog.html', locals())
+    return render(request, 'catalog.html', locals())
 
 def planing(request,id):
     #base
