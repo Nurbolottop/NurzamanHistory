@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'apps.secondary',
     'apps.contacts',
     'apps.apartment',
+    'apps.telegram_bot'
 ]
 
 MIDDLEWARE = [
