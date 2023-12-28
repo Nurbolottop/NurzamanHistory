@@ -320,8 +320,7 @@
       </div>
     </div>
     <div class="moreFlatCard">
-      <!-- Updated button to trigger loadMoreApartments function -->
-      <button onclick="loadMoreApartments()">Посмотреть еще квартиры</button>
+      Посмотреть еше квартиры</p>
     </div>
 
     <br /><br />
@@ -334,52 +333,6 @@
 
     <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
     <script src="{% static 'assets/js/script.js' %}"></script>
-    <script>
-      // JavaScript code to handle loading more apartments
-      let currentPage = 1;
-      
-      function loadMoreApartments() {
-        currentPage += 1; // Increment the page number
-        fetch(`catalog?page=${currentPage}`) // Adjust the URL as needed
-          .then(response => response.json())
-          .then(data => {
-            const flatListDiv = document.querySelector('.flatList');
-            data.apartments.forEach(apartment => {
-              // Assuming apartment has 'room', 'razmer', 'info', etc.
-              // Create new HTML for each apartment and append it to flatListDiv
-              const apartmentCard = `
-                <a href="planing/${apartment.id}">
-                  <div class="flatListCard">
-                    <div class="cardHead">
-                      <h1>${apartment.room} квартира ${apartment.razmer}</h1>
-                      <p>${apartment.info}</p>
-                    </div>
-                    ${apartment.status ? `<button class="flatMetka">${apartment.status}</button>` : ''}
-                    <br />
-                    <div class="cardFlatImage">
-                      <img src="${apartment.layote_url}" alt="" />
-                    </div>
-                    <br />
-                    <div class="cardFlatInf">
-                      <p>Этаж:</p>
-                      <h2>${apartment.floor}</h2>
-                    </div>
-                    <div class="cardFlatInf">
-                      <p>Стоимость:</p>
-                      <h1>${apartment.price} с</h1>
-                    </div>
-                    <br />
-                    <!-- ... Rest of your apartment card HTML -->
-                  </div>
-                </a>
-              `;
-              flatListDiv.insertAdjacentHTML('beforeend', apartmentCard);
-            });
-          })
-          .catch(error => {
-            console.error('Error loading more apartments:', error);
-          });
-      }
-      </script>
+    
   </body>
 </html>
