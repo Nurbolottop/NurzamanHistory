@@ -3,6 +3,7 @@ from django.core.mail import send_mail
 from apps.contacts.models import Contact,ContactInfo
 from apps.base.models import Settings
 from apps.apartment import models
+from apps.telegram_bot.views import get_text
 
 
 # Create your views here.
@@ -46,6 +47,12 @@ def catalog(request):
             email = request.POST.get('email')
             number = request.POST.get('number')
             consent = request.POST.get('consent') == 'on'  # Проверка, что чекбокс был отмечен
+            if consent:
+                get_text(f"""
+                Оставлена заявка на обратный звонок
+                Имя пользователя: {name}
+                emai: {email}
+                Номер телефона: {number}""")
             if consent:
                 contact = Contact.objects.create(name=name, email=email, number=number)
                 send_mail(
