@@ -1,30 +1,9 @@
-{% load static %}
-<section class="menu" id="menu">
-    <div id="closeMenu" class="menuHead">
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M13 1L1 13" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M1 1L13 13" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        Закрыть
-    </div>
-    <div>
+<ul>
+    <li class="ActiveLink"><a href="#section1">О компании</a></li>
 
-        <ul>
-
-            <li class="ActiveLink"> <a href="#section1">Главная страница</a></li>
-            <li class="ActiveLink"> <a href="#section1">О компании</a></li>
-            <li><a href="#section2">О проекте</a> </li>
-            <li><a href="#section3">Расположение</a></li>
-            <li><a href="#section4">Преимущества</a></li>
-            <li><a href="#section5">Выбор квартиры</a></li>
-            <li><a href="#section6">Контакты</a></li>
-        </ul>
-    </div>
-    <div>
-        <div class="sosial" >
-            <img  src="{% static 'assets/img/Group 4.svg' %}" alt="">
-            <img src="{% static 'assets/img/Group 6.svg' %}" alt="">
-            <img src="{% static 'assets/img/Group 5.svg' %}" alt="">
-        </div>
-    </div>
-</section>
+    <li><a href="{% url 'index' %}#sectionEvro">О проекте</a></li>
+    <li><a href="{% url 'index' %}#envirement">Расположение</a></li>
+    <li><a href="{% url 'index' %}#advantages">Преимущества</a></li>
+    <li><a href="{% url 'catalog' %}">Выбор квартиры</a></li>
+    <li><a href="{% url 'index' %}#section6">Контакты</a></li>
+  </ul>

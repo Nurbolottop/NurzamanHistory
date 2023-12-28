@@ -1,25 +1,25 @@
 const totalPages = document.getElementById('totalPages');
 var windowWidth = window.innerWidth;
 
-$('.owl-carousel').owlCarousel({
-  loop: true,
-  margin: 10,
-  nav: true,
-  autoplay: true, // Enable autoplay
-  autoplayHoverPause: false,
-  zoom: true,
-  responsive: {
-    0: {
-      items: 1,
-    },
-    600: {
-      items: 3,
-    },
-    1000: {
-      items: 5,
-    },
-  },
-});
+// $('.owl-carousel').owlCarousel({
+//   loop: true,
+//   margin: 10,
+//   nav: true,
+//   autoplay: true, // Enable autoplay
+//   autoplayHoverPause: false,
+//   zoom: true,
+//   responsive: {
+//     0: {
+//       items: 1,
+//     },
+//     600: {
+//       items: 3,
+//     },
+//     1000: {
+//       items: 5,
+//     },
+//   },
+// });
 
 var swiper = new Swiper('.swiper-container1', {
   slidesPerView: windowWidth > 390 ? 2 : 1,
@@ -551,3 +551,8 @@ if (price && price.textContent.trim()) {
   priceObserver.observe(price, { childList: true });
   onChangeTexts();
 }
+
+
+Fancybox.bind('[data-fancybox="gallery"]', {
+  // Your custom options for a specific gallery
+});

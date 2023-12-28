@@ -105,9 +105,9 @@ class EuroImage(models.Model):
 ################################################################################################################################################################################
 
 class Choise(models.Model):
-    title  = models.CharField(
-        max_length=255,
-        verbose_name="Название сайта"
+    title  = RichTextField(
+        verbose_name="Информационный текст",
+        blank=True,null=True
     )
     chert = ResizedImageField(
         force_format="WEBP", 
@@ -122,6 +122,7 @@ class Choise(models.Model):
     class Meta:
             verbose_name = "Сделай свой выбор"
             verbose_name_plural = "Сделай свой выбор"
+            
 class ChoiseTitle(models.Model):
     settings = models.ForeignKey(Choise, related_name='choise_image', on_delete=models.CASCADE)
     title = models.CharField(
@@ -164,6 +165,41 @@ class AdvantagesTitle(models.Model):
         force_format="WEBP", 
         quality=100, 
         upload_to='Advantages/',
+        verbose_name="Фотография",
+        blank = True, null = True
+    )
+
+    class Meta:
+        unique_together = ('settings', 'title', 'info','image')
+
+################################################################################################################################################################################
+
+class  AdvantagesTwo(models.Model):
+    descriptions  = RichTextField(
+        verbose_name="Информационный текст",
+        blank=True,null=True
+    )
+    def __str__(self):
+        return self.descriptions
+    
+    class Meta:
+            verbose_name = "Преимущества номер два"
+            verbose_name_plural = "Преимущества номер два"
+
+class AdvantagesTwoTitle(models.Model):
+    settings = models.ForeignKey(AdvantagesTwo, related_name='adventagess', on_delete=models.CASCADE)
+    title = models.CharField(
+        max_length = 255,
+        verbose_name = "Название"
+    )
+    info  = RichTextField(
+        verbose_name="Информационный текст",
+        blank=True,null=True
+    )
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='AdvantagesTwo/',
         verbose_name="Фотография",
         blank = True, null = True
     )

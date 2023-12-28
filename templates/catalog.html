@@ -1,11 +1,12 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/styles/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.css" />
-    <link rel="stylesheet" href="./assets/styles/swiperStyle.css" />
+    <link rel="stylesheet" href="{% static 'assets/styles/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/styles/swiperStyle.css' %}" />
     <title>Nurzaman</title>
   </head>
 
@@ -13,7 +14,7 @@
     <div class="preloader">
       <div class="preLoaderCenter">
         <div class="logo">
-          <img src="./assets/svg/Mask group.svg" alt="" />
+          <img src="{% static 'assets/svg/Mask group.svg' %}" alt="" />
           <br />
           <div class="progress-bar">
             <div id="loadProgress" class="loadProgress"></div>
@@ -32,17 +33,8 @@
         Закрыть
       </div>
       <div>
-        <ul>
-          <li class="ActiveLink">
-            <a href="./index.html#section1">О компании</a>
-          </li>
-  
-          <li><a href="./index.html#sectionEvro">О проекте</a></li>
-          <li><a href="./index.html#envirement">Расположение</a></li>
-          <li><a href="./index.html#advantages">Преимущества</a></li>
-          <li><a href="catalog.html">Выбор квартиры</a></li>
-          <li><a href="./index.html">Контакты</a></li>
-        </ul>
+        {% include 'include/header.html' %}
+
       </div>
       <div>
         <div class="social">
@@ -100,7 +92,7 @@
         </div>
         <div class="logo">
           <a href="./index.html">
-            <img class="logo_img" src="assets/img/logo.png" alt="" />
+            <img class="logo_img" src="assets/img/logo.png' %}" alt="" />
           </a>
         </div>
         <div class="mobileNone" style="width: 100px"></div>
@@ -109,8 +101,8 @@
 
       <div>
         <div class="socialMedia">
-          <img src="./assets/svg/Group 4.svg" alt="" />
-          <img src="./assets/svg/Group 6.svg" alt="" />
+          <img src="{% static 'assets/svg/Group 4.svg' %}" alt="" />
+          <img src="{% static 'assets/svg/Group 6.svg' %}" alt="" />
         </div>
       </div>
     </header>
@@ -121,7 +113,7 @@
       <h1>КВАРТИРЫ</h1>
       <br /><br /><br /><br />
       <div class="sliderLink" style="margin-top: 30px;">
-        <a href="./genPlaning.html">
+        <a href="{% url 'genplaning' %}">
           <div class="navSlideLink" style="padding: 1rem">На генплане</div>
         </a>
 
@@ -129,17 +121,13 @@
       </div>
       <br /><br />
       <div class="filterList">
-        <div class="filterItem filterItemActive">Все квартиры</div>
-        <div style="border: 1px solid #b37d68" class="filterItem">Выгодное предложение</div>
-        <div class="filterItem">1 комнатные квартиры</div>
-        <div class="filterItem">2 комнатные квартиры</div>
-        <div class="filterItem">3 комнатные квартиры</div>
-        <div class="filterItem">Не угловые квартиры</div>
-        <div class="filterItem">Квартиры с террасой</div>
-        <div class="filterItem">Квартиры со сквозной планировкой</div>
-        <div class="filterItem">Квартиры студийные</div>
-        <div class="filterItem">Квартиры с 2 лоджиями</div>
-        <div class="filterItem">Квартиры студийные</div>
+        {% comment %} <div class="filterItem filterItemActive">Все квартиры</div>
+        <div style="border: 1px solid #b37d68" class="filterItem">Выгодное предложение</div> {% endcomment %}
+        <a href="{% url 'catalog' %}" class="filterItem">Все квартиры</a>
+        {% for category in categories %}
+        <a href="{% url 'catalog' %}?category={{ category.id }}" class="filterItem">{{ category.title }}</a>
+        {% endfor %}
+
       </div>
     </main>
 
@@ -156,10 +144,10 @@
           </div>
           <div>
             <h2>Количество комнат</h2>
+            {% for room in rooms %}
+              <a href="{% url 'catalog' %}?room={{ room.id }}" class="roomButton">{{ room.id }}</a>
+            {% endfor %}
 
-            <button class="roomButton">1</button>
-            <button class="roomButton">2</button>
-            <button class="roomButton">3</button>
           </div>
           <div>
             <h2>Стоимость, в сомах</h2>
@@ -291,31 +279,34 @@
         </div>
       </div>
       <div class="flatList">
-        <a href="./planing.html">
+        {% for apartment in filtered_apartments %}
+        <a href="{% url 'planing' apartment.id %}">
           <div class="flatListCard">
             <div class="cardHead">
-              <h1>Двухкомнатная квартира 89,76м2</h1>
-              <p>Подъезд 1, кв. №38</p>
+              <h1>{{apartment.room}} квартира {{apartment.razmer}}</h1>
+              <p>{{apartment.info}}</p>
             </div>
-            <button class="flatMetka">дом сдан</button>
+            {% if apartment.status%}
+            <button class="flatMetka">{{apartment.status}}</button>
+            {% endif %}
             <br />
             <div class="cardFlatImage">
-              <img src="./assets/img/vkjclp4nkff4x10ierq76tt5ej1wgi6v.jpg.png" alt="" />
+              <img src="{{apartment.layote.url}}" alt="" />
             </div>
             <br />
             <div class="cardFlatInf">
               <p>Этаж:</p>
-              <h2>2 из 12</h2>
+              <h2>{{apartment.floor}} </h2>
             </div>
             <div class="cardFlatInf">
               <p>Стоимость:</p>
-              <h1>13 431 043 с</h1>
+              <h1>{{apartment.price}} с</h1>
             </div>
             <br />
             <div class="cardFootFlat">
               <div>
-                <h1>Стандартный платеж <img width="14px" src="./assets/svg/div.tooltip-circle.svg" alt="" /></h1>
-                <h1>Ваш платеж <img width="14px" src="./assets/svg/div.tooltip-circle — копия.svg" alt="" /></h1>
+                <h1>Стандартный платеж <img width="14px" src="{% static 'assets/svg/div.tooltip-circle.svg' %}" alt="" /></h1>
+                <h1>Ваш платеж <img width="14px" src="{% static 'assets/svg/div.tooltip-circle — копия.svg' %}" alt="" /></h1>
               </div>
               <div>
                 <h2>от 80 453 с/мес.</h2>
@@ -324,171 +315,7 @@
             </div>
           </div>
         </a>
-        <a href="./planing.html">
-          <div class="flatListCard">
-            <div class="cardHead">
-              <h1>Двухкомнатная квартира 89,76м2</h1>
-              <p>Подъезд 1, кв. №38</p>
-            </div>
-
-            <br />
-            <div class="cardFlatImage">
-              <img src="./assets/img/vkjclp4nkff4x10ierq76tt5ej1wgi6v.jpg.png" alt="" />
-            </div>
-            <br />
-            <div class="cardFlatInf">
-              <p>Этаж:</p>
-              <h2>2 из 12</h2>
-            </div>
-            <div class="cardFlatInf">
-              <p>Стоимость:</p>
-              <h1>13 431 043 с</h1>
-            </div>
-            <br />
-            <div class="cardFootFlat">
-              <div>
-                <h1>Стандартный платеж <img width="14px" src="./assets/svg/div.tooltip-circle.svg" alt="" /></h1>
-                <h1>Ваш платеж <img width="14px" src="./assets/svg/div.tooltip-circle — копия.svg" alt="" /></h1>
-              </div>
-              <div>
-                <h2>от 80 453 с/мес.</h2>
-                <h3>от 54 535 с/мес.</h3>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a href="./planing.html">
-          <div class="flatListCard">
-            <div class="cardHead">
-              <h1>Двухкомнатная квартира 89,76м2</h1>
-              <p>Подъезд 1, кв. №38</p>
-            </div>
-
-            <br />
-            <div class="cardFlatImage">
-              <img src="./assets/img/vkjclp4nkff4x10ierq76tt5ej1wgi6v.jpg.png" alt="" />
-            </div>
-            <br />
-            <div class="cardFlatInf">
-              <p>Этаж:</p>
-              <h2>2 из 12</h2>
-            </div>
-            <div class="cardFlatInf">
-              <p>Стоимость:</p>
-              <h1>13 431 043 с</h1>
-            </div>
-            <br />
-            <div class="cardFootFlat">
-              <div>
-                <h1>Стандартный платеж <img width="14px" src="./assets/svg/div.tooltip-circle.svg" alt="" /></h1>
-                <h1>Ваш платеж <img width="14px" src="./assets/svg/div.tooltip-circle — копия.svg" alt="" /></h1>
-              </div>
-              <div>
-                <h2>от 80 453 с/мес.</h2>
-                <h3>от 54 535 с/мес.</h3>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a href="./planing.html">
-          <div class="flatListCard">
-            <div class="cardHead">
-              <h1>Двухкомнатная квартира 89,76м2</h1>
-              <p>Подъезд 1, кв. №38</p>
-            </div>
-
-            <br />
-            <div class="cardFlatImage">
-              <img src="./assets/img/vkjclp4nkff4x10ierq76tt5ej1wgi6v.jpg.png" alt="" />
-            </div>
-            <br />
-            <div class="cardFlatInf">
-              <p>Этаж:</p>
-              <h2>2 из 12</h2>
-            </div>
-            <div class="cardFlatInf">
-              <p>Стоимость:</p>
-              <h1>13 431 043 с</h1>
-            </div>
-            <br />
-            <div class="cardFootFlat">
-              <div>
-                <h1>Стандартный платеж <img width="14px" src="./assets/svg/div.tooltip-circle.svg" alt="" /></h1>
-                <h1>Ваш платеж <img width="14px" src="./assets/svg/div.tooltip-circle — копия.svg" alt="" /></h1>
-              </div>
-              <div>
-                <h2>от 80 453 с/мес.</h2>
-                <h3>от 54 535 с/мес.</h3>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a href="./planing.html">
-          <div class="flatListCard">
-            <div class="cardHead">
-              <h1>Двухкомнатная квартира 89,76м2</h1>
-              <p>Подъезд 1, кв. №38</p>
-            </div>
-
-            <br />
-            <div class="cardFlatImage">
-              <img src="./assets/img/vkjclp4nkff4x10ierq76tt5ej1wgi6v.jpg.png" alt="" />
-            </div>
-            <br />
-            <div class="cardFlatInf">
-              <p>Этаж:</p>
-              <h2>2 из 12</h2>
-            </div>
-            <div class="cardFlatInf">
-              <p>Стоимость:</p>
-              <h1>13 431 043 с</h1>
-            </div>
-            <br />
-            <div class="cardFootFlat">
-              <div>
-                <h1>Стандартный платеж <img width="14px" src="./assets/svg/div.tooltip-circle.svg" alt="" /></h1>
-                <h1>Ваш платеж <img width="14px" src="./assets/svg/div.tooltip-circle — копия.svg" alt="" /></h1>
-              </div>
-              <div>
-                <h2>от 80 453 с/мес.</h2>
-                <h3>от 54 535 с/мес.</h3>
-              </div>
-            </div>
-          </div>
-        </a>
-        <a href="./planing.html">
-          <div class="flatListCard">
-            <div class="cardHead">
-              <h1>Двухкомнатная квартира 89,76м2</h1>
-              <p>Подъезд 1, кв. №38</p>
-            </div>
-            <button class="flatMetka">дом сдан</button>
-            <br />
-            <div class="cardFlatImage">
-              <img src="./assets/img/vkjclp4nkff4x10ierq76tt5ej1wgi6v.jpg.png" alt="" />
-            </div>
-            <br />
-            <div class="cardFlatInf">
-              <p>Этаж:</p>
-              <h2>2 из 12</h2>
-            </div>
-            <div class="cardFlatInf">
-              <p>Стоимость:</p>
-              <h1>13 431 043 с</h1>
-            </div>
-            <br />
-            <div class="cardFootFlat">
-              <div>
-                <h1>Стандартный платеж <img width="14px" src="./assets/svg/div.tooltip-circle.svg" alt="" /></h1>
-                <h1>Ваш платеж <img width="14px" src="./assets/svg/div.tooltip-circle — копия.svg" alt="" /></h1>
-              </div>
-              <div>
-                <h2>от 80 453 с/мес.</h2>
-                <h3>от 54 535 с/мес.</h3>
-              </div>
-            </div>
-          </div>
-        </a>
+        {% endfor %}
       </div>
     </div>
     <div class="moreFlatCard">
@@ -497,186 +324,13 @@
 
     <br /><br />
     <div class="h100"></div>
-    <section id="section6" class="form">
-      <form class="formSection">
-        <h1>
-          Заказать
-          <br />
-          обратный Звонок
-        </h1>
-        <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати</p>
-        <input placeholder="Введите имя" class="Forminput" type="text" />
+    {% include 'include/contact_form.html'%}
 
-        <input placeholder="Введите номер" class="Forminput" type="text" />
-        <div class="checkbox">
-          <input type="checkbox" name="" id="" />
-          <p>
-            Я даю согласие на обработку моих персональных данных<br />
-            согласно политике конфиденциальности
-          </p>
-        </div>
-        <button class="formButton">Заказать звонок</button>
-      </form>
-      <div class="formImager">
-        <img src="./assets/img/Rectangle 27 (2).png" alt="" />
-      </div>
-    </section>
     <br /><br /><br /><br />
     <div class="h100"></div>
-    <footer class="footer">
-      <div>
-        <div class="leftFooter">
-          <img src="./assets/svg/Mask group.svg" alt="" />
-        </div>
-        <br /><br />
-        <input placeholder="Введите имя" class="Forminputt" type="text" />
-        <br />
-        <input placeholder="Введите номер" class="Forminputt" type="text" />
-        <div class="checkboxx">
-          <input type="checkbox" name="" id="" />
-          <p>Я согласен на обработку Персональных данных</p>
-        </div>
-        <button class="footerButton">Отправить</button>
-      </div>
-      <div class="footerCenter">
-        <h1>Контакты</h1>
-        <div>
-          <h1>Адрес</h1>
-          <p>г. Ош ул. Аскара Шакирова 275</p>
-          <p>jk_nurzaman@mail.ru</p>
-          <p>0507 77 77 44</p>
-          <p>0553 77 77 44</p>
-        </div>
-        <div>
-          <h1>Офис продаж:</h1>
-          <p>г. Ош ул. Аскара Шакирова 275</p>
-          <p>Пн. - Сб. c 09:00 до 18:00</p>
-        </div>
-      </div>
-      <div class="footerCenter">
-        <h1 class="mobileNoneDiv" style="opacity: 0">Контакты</h1>
-        <div>
-          <h1>Подписаться</h1>
-          <a href="https://www.instagram.com/nurzaman_osh/">
-            <p>Instagram - nurzaman_osh</p>
-          </a>
-  
-          <a href="https://www.facebook.com/people/Нурзаман-Ош/100060054201042/?locale=de_DE">
-            <p>Facebook - Нурзаман Ош</p>
-          </a>
-  
-          <p class="mobileNoneDiv" style="opacity: 0">Facebook - Нурзаман Ош</p>
-          <p class="mobileNoneDiv" style="opacity: 0">Facebook - Нурзаман Ош</p>
-        </div>
-        <div class="mobileNoneDiv" style="opacity: 0">
-          <h1>Офис продаж:</h1>
-          <p>г. Ош ул. Аскара Шакирова 275</p>
-          <p>Пн. - Сб. c 09:00 до 18:00</p>
-        </div>
-        <!-- <div></div>
-              <div>
-                  <h1>Подписаться</h1>
-                  <p>Instagram - nurzaman_osh</p>
-                  <p>Facebook - Нурзаман Ош</p>
-  
-              </div>
-              <div></div> -->
-      </div>
-      <div class="footerRight">
-        <a href="https://api.whatsapp.com/send/?phone=996778777744&text&type=phone_number&app_absent=0">
-          <div class="writeUs">
-            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="22" viewBox="0 0 21 22" fill="none">
-              <path
-                d="M0.448262 10.4554C0.44777 12.2336 0.912394 13.9699 1.79587 15.5002L0.36377 20.7291L5.71483 19.326C7.19486 20.1317 8.85313 20.5539 10.5383 20.554H10.5427C16.1056 20.554 20.634 16.0273 20.6364 10.4634C20.6375 7.76724 19.5884 5.23198 17.6825 3.32459C15.7769 1.41737 13.2426 0.366465 10.5423 0.365234C4.97868 0.365234 0.450641 4.89172 0.448344 10.4554"
-                fill="url(#paint0_linear_26_565)" />
-              <path
-                d="M0.0877734 10.4521C0.0871992 12.2943 0.568476 14.0926 1.48345 15.6778L0 21.0941L5.54293 19.6407C7.07019 20.4734 8.78973 20.9125 10.5395 20.9131H10.544C16.3065 20.9131 20.9975 16.2236 21 10.4605C21.001 7.66746 19.9142 5.04107 17.9402 3.06534C15.966 1.08987 13.341 0.00114844 10.544 0C4.78045 0 0.0900703 4.68891 0.0877734 10.4521ZM3.38871 15.4048L3.18175 15.0763C2.31172 13.6929 1.85251 12.0943 1.85317 10.4528C1.85505 5.66254 5.75351 1.76531 10.5473 1.76531C12.8687 1.7663 15.0504 2.67127 16.6914 4.3132C18.3323 5.9553 19.2352 8.13816 19.2346 10.4598C19.2325 15.25 15.3339 19.1477 10.544 19.1477H10.5405C8.98086 19.1469 7.45123 18.7281 6.11723 17.9365L5.79977 17.7483L2.51048 18.6107L3.38871 15.4047V15.4048Z"
-                fill="url(#paint1_linear_26_565)" />
-              <path
-                d="M7.93048 6.0825C7.73476 5.64749 7.52878 5.63871 7.34265 5.63108C7.19023 5.62452 7.016 5.62501 6.84193 5.62501C6.66769 5.62501 6.3846 5.69055 6.14532 5.95182C5.90579 6.21334 5.23083 6.84531 5.23083 8.13065C5.23083 9.41608 6.16706 10.6583 6.29757 10.8328C6.42825 11.0069 8.10496 13.729 10.7605 14.7762C12.9674 15.6465 13.4166 15.4734 13.8955 15.4298C14.3746 15.3863 15.4413 14.798 15.659 14.1879C15.8768 13.5779 15.8768 13.0551 15.8115 12.9458C15.7462 12.8369 15.5719 12.7716 15.3107 12.641C15.0493 12.5103 13.7649 11.8783 13.5254 11.7911C13.2859 11.7039 13.1117 11.6605 12.9375 11.9221C12.7633 12.1832 12.263 12.7716 12.1105 12.9458C11.9581 13.1205 11.8056 13.1422 11.5445 13.0115C11.283 12.8804 10.4416 12.6049 9.44339 11.7149C8.66671 11.0224 8.14237 10.1672 7.98996 9.90564C7.83754 9.64446 7.97363 9.50287 8.10464 9.37269C8.22202 9.25563 8.36599 9.06761 8.49675 8.91512C8.62701 8.76254 8.67049 8.65368 8.7576 8.47945C8.8448 8.30505 8.80116 8.15247 8.73595 8.0218C8.67049 7.89112 8.1628 6.59905 7.93048 6.0825Z"
-                fill="white" />
-              <defs>
-                <linearGradient id="paint0_linear_26_565" x1="1014" y1="2036.75" x2="1014" y2="0.365234"
-                  gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#1FAF38" />
-                  <stop offset="1" stop-color="#60D669" />
-                </linearGradient>
-                <linearGradient id="paint1_linear_26_565" x1="1050" y1="2109.41" x2="1050" y2="0"
-                  gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#F9F9F9" />
-                  <stop offset="1" stop-color="white" />
-                </linearGradient>
-              </defs>
-            </svg>
-            <p>
-              0778 77 77 44
-              <br />
-              <u> Написать нам</u>
-            </p>
-          </div>
-        </a>
-        <div class="sosial">
-          <img onclick="callPhoneNumber('0553 77 77 44')" src="./assets/img/Group 4.svg" alt="" />
-          <a href="https://api.whatsapp.com/send/?phone=996778777744&text&type=phone_number&app_absent=0">
-            <img src="./assets/img/Group 6.svg" alt="" />
-          </a>
-  
-          <a href="https://www.instagram.com/nurzaman_osh/">
-            <img src="./assets/img/Group 5.svg" alt="" />
-          </a>
-        </div>
-      </div>
-    </footer>
-    <footer class="footer" style="flex-direction: column">
-      <div class="line mobileNoneDiv"></div>
-      <div class="underFoot">
-        <div class="writeUs">
-          <p><u>© Nurzaman 2023 Информация на сайте не является публичной офертой</u></p>
-        </div>
-        <div class="writeUs">
-          <p><u>Политика конфиденциальности</u></p>
-        </div>
-      </div>
-    </footer>
-    <div style="display: none" id="modal">
-      <div class="modalContainer"></div>
-      <div class="modal1">
-        <div class="madalHead">
-          <h1>Заказать звонок</h1>
-          <svg
-            id="closeModal"
-            style="cursor: pointer"
-            xmlns="http://www.w3.org/2000/svg"
-            width="29"
-            height="29"
-            viewBox="0 0 29 29"
-            fill="none"
-          >
-            <line x1="7.07234" y1="7.07024" x2="21.2145" y2="21.2124" stroke="#909090" stroke-width="2" />
-            <line x1="21.213" y1="7.07039" x2="7.07083" y2="21.2125" stroke="#909090" stroke-width="2" />
-          </svg>
-        </div>
+    {% include "include/footer.html" %}
 
-        <form class="modalForm">
-          <input class="modalInput" type="text" placeholder="Ваше имя" />
-
-          <input class="modalInput" type="text" placeholder="Ваш номер телефона" />
-
-          <br /><br />
-          <div>
-            <input type="checkbox" name="" id="" />
-            Я согласен с политикой конфиденциальности
-          </div>
-          <br /><br />
-          <button>Отправить</button>
-        </form>
-      </div>
-    </div>
-
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.js"></script>
-    <script src="./assets/js/script.js"></script>
+    <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/script.js' %}"></script>
   </body>
 </html>

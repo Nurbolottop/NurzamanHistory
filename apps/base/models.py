@@ -17,7 +17,7 @@ class Settings(models.Model):
         force_format="WEBP", 
         quality=100, 
         upload_to='logo/',
-        verbose_name="Фотография",
+        verbose_name="Логотип Компании",
         blank = True, null = True
     )
 
@@ -25,7 +25,7 @@ class Settings(models.Model):
         force_format="WEBP", 
         quality=100, 
         upload_to='logo/',
-        verbose_name="Фотография",
+        verbose_name="Логотип Комплекса",
         blank = True, null = True
     )
 
@@ -40,6 +40,10 @@ class Settings(models.Model):
     whatsapp = models.URLField(
         verbose_name='Whatspp URL',
         blank=True, null=True
+    )
+    whatsapp_number = models.CharField(
+        max_length = 255,
+        verbose_name = "Whatsapp номер"
     )
     instagram = models.URLField(
         verbose_name='Instagram URL',
@@ -60,7 +64,6 @@ class Settings(models.Model):
             verbose_name = "Основная настройка"
             verbose_name_plural = "Основные настройки"
 
-################################################################################################################################################################################
 
 class SettingsPhone(models.Model):
     settings = models.ForeignKey(Settings, related_name='phone_title', on_delete=models.CASCADE)
@@ -70,6 +73,42 @@ class SettingsPhone(models.Model):
      )
     class Meta:
         unique_together = ('settings', 'phone')
+        verbose_name = "Дополнительный телефонный номер"
+        verbose_name_plural = "Дополнительный телефонный номер"
+
+
+class SettingsOffice(models.Model):
+    settings = models.ForeignKey(Settings, related_name='office_title', on_delete=models.CASCADE)
+    location = models.CharField(
+        max_length=255,
+        verbose_name='Адрес'
+    )
+    phone = models.CharField(
+          max_length = 255,
+          verbose_name = "График работы"
+     )
+    class Meta:
+        unique_together = ('settings', 'phone', 'location')
+        verbose_name = "Офис продаж"
+        verbose_name_plural = "Офис продаж"
+
+class SettingsSoc(models.Model):
+    settings = models.ForeignKey(Settings, related_name='settings_soc', on_delete=models.CASCADE)
+    title = models.CharField(
+          max_length = 255,
+          verbose_name = "Название соц.сети"
+     )
+    username = models.CharField(
+        max_length = 255,
+        verbose_name = "username аккаунта"
+    )
+    url = models.URLField(
+        verbose_name = "Ссылка"
+    )
+    class Meta:
+        unique_together = ('settings', 'title')
+        verbose_name = "Соц сети"
+        verbose_name_plural = "Соц сети"
 
 ################################################################################################################################################################################
 
@@ -96,9 +135,9 @@ class About(models.Model):
 ################################################################################################################################################################################
 
 class Gallery(models.Model):
-    title = models.CharField(
-         max_length = 255,
-         verbose_name = "Название"
+    title = RichTextField(
+        verbose_name="Информационный текст",
+        blank=True,null=True
     )
     def __str__(self):
         return self.title

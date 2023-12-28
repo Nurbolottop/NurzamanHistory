@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'apps.base',
     'apps.secondary',
     'apps.contacts',
+    'apps.apartment',
 ]
 
 MIDDLEWARE = [

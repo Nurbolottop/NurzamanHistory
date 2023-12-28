@@ -62,6 +62,18 @@ class AdvantagesFilterAdmin(admin.ModelAdmin):
 
 ################################################################################################################################################################################
 
+class AdvantagesTwoImageInline(admin.TabularInline):
+    model = models.AdvantagesTwoTitle
+    extra = 1
+
+class AdvantagesTwoFilterAdmin(admin.ModelAdmin):
+    list_filter = ('descriptions',)
+    list_display = ('descriptions',)
+    search_fields = ('descriptions',)
+    inlines = [AdvantagesTwoImageInline]
+
+################################################################################################################################################################################
+
 class EnvironmentInline(admin.TabularInline):
     model = models.EnviromentTitle
     extra = 1
@@ -89,6 +101,8 @@ admin.site.register(models.Choise, ChoiseFilterAdmin)
 admin.site.register(models.Advantages, AdvantagesFilterAdmin)
 admin.site.register(models.Environment, EnvironmentFilterAdmin)
 admin.site.register(models.Street, StreetFilterAdmin)
+admin.site.register(models.AdvantagesTwo, AdvantagesTwoFilterAdmin)
+
 
 
 ################################################################################################################################################################################

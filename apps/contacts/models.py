@@ -15,7 +15,10 @@ class Contact(models.Model):
         max_length=255,
         verbose_name="Телефонный номер"
     )
-
+    consent = models.BooleanField(
+        default=False, 
+        verbose_name="Согласие на обработку данных"
+    )
     def __str__(self):
         return f"{self.name}"
     
