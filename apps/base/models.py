@@ -160,3 +160,25 @@ class GalleryImage(models.Model):
         unique_together = ('settings', 'image')
 
 ################################################################################################################################################################################
+
+class ContactInfo(models.Model):
+    title = RichTextField(
+        verbose_name="Информационный текст",
+        blank=True,null=True
+    )
+    image = ResizedImageField(
+        force_format="WEBP", 
+        quality=100, 
+        upload_to='gallery/',
+        verbose_name="Фотография",
+        blank = True, null = True
+    )
+
+    def __str__(self):
+        return f"{self.title}"
+    
+    class Meta:
+        verbose_name = "Страница контакты"
+        verbose_name_plural = "Страница контакты"
+
+################################################################################################################################################################################

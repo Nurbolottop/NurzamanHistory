@@ -358,7 +358,7 @@
             <a href="./planing.html">
               <div class="flatListCard" style="width: 100% !important">
                 <div class="cardHead">
-                  <h1>{{apartment.title}} квартира {{apartment.razmer}}</h1>
+                  <h1>{{apartment.room}} квартира {{apartment.razmer}}</h1>
                   {% if apartment.info%}
                   <p>{{apartment.info}}</p>
                   {% endif%}
@@ -368,7 +368,7 @@
                 {% endif %}
                 <br />
                 <div class="cardFlatImage">
-                  <img src="{% static 'assets/img/vkjclp4nkff4x10ierq76tt5ej1wgi6v.jpg.png' %}" alt="" />
+                  <img src="{{apartment.layote.url}}" alt="" />
                 </div>
                 <br />
                 <div class="cardFlatInf">

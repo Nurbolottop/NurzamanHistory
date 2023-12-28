@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.core.mail import send_mail
-from apps.contacts.models import Contact,ContactInfo
-from apps.base.models import Settings
+from apps.contacts.models import Contact
+from apps.base.models import Settings,ContactInfo
 from apps.apartment import models
 from apps.telegram_bot.views import get_text
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger

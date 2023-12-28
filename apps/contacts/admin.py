@@ -9,12 +9,5 @@ class ContactFilterAdmin(admin.ModelAdmin):
 
 ################################################################################################################################################################################
 
-class ContactInfoFilterAdmin(admin.ModelAdmin):
-    list_filter = ('title', )
-    list_display = ('title', )
-    search_fields = ('title', )
 
-################################################################################################################################################################################
-
-admin.site.register(models.ContactInfo, ContactInfoFilterAdmin)
 admin.site.register(models.Contact, ContactFilterAdmin)

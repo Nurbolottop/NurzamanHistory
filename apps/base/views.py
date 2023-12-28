@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from apps.base import models
 from django.http import HttpResponse
 from apps.secondary.models import Slide,Projects,Pride,Euro,Choise,Advantages,Environment,Street,AdvantagesTwo
-from apps.contacts.models import Contact,ContactInfo
+from apps.contacts.models import Contact
 from django.core.mail import send_mail
 from apps.telegram_bot.views import get_text
 # Create your views here.
@@ -26,7 +26,7 @@ def index(request):
     
 
     #CONTACTS
-    contactinfo = ContactInfo.objects.latest('id')
+    contactinfo = models.ContactInfo.objects.latest('id')
     if request.method == "POST":
         if "call1" in request.POST:
             name = request.POST.get('name')
