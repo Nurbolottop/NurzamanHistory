@@ -10,24 +10,25 @@ def catalog(request):
     #base
     settings = Settings.objects.latest("id")
 
-    #apartment
+    # категории квартир
     categories = models.Category.objects.all()
     category_id = request.GET.get('category')
     filtered_apartments = models.Apartment.objects.all()
 
+    # фильтрация квартир по категории
     if category_id:
         filtered_apartments = filtered_apartments.filter(category__id=category_id)
 
+    # комнаты
     rooms = models.Rooms.objects.all()
     rooms_id = request.GET.get("room")
-    filtered_rooms_apartments = filtered_apartments  # Создайте отдельную переменную для комнат
 
+    # фильтрация отфильтрованных квартир по комнатам
     if rooms_id:
-        filtered_rooms_apartments = filtered_apartments.filter(room__id=rooms_id)
+        filtered_apartments = filtered_apartments.filter(room_id=rooms_id)
 
 
- 
-    #contacts
+    # контактная информация
     contactinfo = ContactInfo.objects.latest('id')
     if request.method == "POST":
         if "call1" in request.POST:
