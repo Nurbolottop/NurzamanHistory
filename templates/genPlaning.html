@@ -97,7 +97,7 @@
       </div>
       <div class="logo">
         <a href="./index.html">
-          <img class="logo_img" src="assets/img/logo.png' %}" alt="" />
+          <img class="logo_img" src="{{settings.logo_complex.url}}" alt="" />
         </a>
       </div>
       <div class="mobileNone" style="width: 100px"></div>
@@ -114,10 +114,10 @@
   <main class="main" style="padding: 0 27px">
     <br /><br /><br /><br />
     <div class="sliderLink">
-      <a href="./genPlaning.html">
+      <a href="{% url 'genplaning' %}">
         <div class="navSlideLink activee">На генплане</div>
       </a>
-      <a href="./catalog.html">
+      <a href="{% url 'catalog' %}">
         <div class="navSlideLink">По параметрам</div>
       </a>
     </div>
@@ -148,60 +148,61 @@
     </div>
     <div class="homeNum">
       <div class="glassCardd">
-        <h1>Блок № 9</h1>
-        <p>Дата сдачи: 02.05.205</p>
-        <p>Количество квартир: 37</p>
+        <h1>Блок № {{ block_data_9.number }}</h1>
+        <p>Дата сдачи: {{ block_data_9.date|date:"d.m.Y" }}</p>
+        <p>Количество квартир: {{block_data_9.apartments_count}}</p>
       </div>
       <div class="glassCardd2">
-        <h1>Блок № 1</h1>
-        <p>Дата сдачи: 02.05.205</p>
-        <p>Количество квартир: 37</p>
+        <h1>Блок № {{ block_data_1.number }}</h1>
+        <p>Дата сдачи: {{ block_data_1.date|date:"d.m.Y" }}</p>
+        <p>Количество квартир: {{block_data_1.apartments_count}}</p>
       </div>
       <div class="glassCardd3">
-        <h1>Блок № 3</h1>
-        <p>Дата сдачи: 02.05.205</p>
-        <p>Количество квартир: 37</p>
+        <h1>Блок № {{ block_data_3.number }}</h1>
+        <p>Дата сдачи: {{ block_data_3.date|date:"d.m.Y" }}</p>
+        <p>Количество квартир: {{block_data_3.apartments_count}}</p>
       </div>
       <div class="glassCardd4">
-        <h1>Блок № 10</h1>
-        <p>Дата сдачи: 02.05.205</p>
-        <p>Количество квартир: 37</p>
+        <h1>Блок № {{ block_data_10.number }}</h1>
+        <p>Дата сдачи: {{ block_data_10.date|date:"d.m.Y" }}</p>
+        <p>Количество квартир: {{block_data_10.apartments_count}}</p>
       </div>
       <div class="glassCardd5">
-        <h1>Блок № 11</h1>
-        <p>Дата сдачи: 02.05.205</p>
-        <p>Количество квартир: 37</p>
+        <h1>Блок № {{ block_data_11.number }}</h1>
+        <p>Дата сдачи: {{ block_data_11.date|date:"d.m.Y" }}</p>
+        <p>Количество квартир: {{block_data_11.apartments_count}}</p>
       </div>
       <div class="glassCardd6">
-        <h1>Блок № 12</h1>
-        <p>Дата сдачи: 02.05.205</p>
-        <p>Количество квартир: 37</p>
+        <h1>Блок № {{ block_data_2.number }}</h1>
+        <p>Дата сдачи: {{ block_data_2.date|date:"d.m.Y" }}</p>
+        <p>Количество квартир: {{block_data_2.apartments_count}}</p>
       </div>
       <div class="glassCardd7">
-        <h1>Блок № 8</h1>
-        <p>Дата сдачи: 02.05.205</p>
-        <p>Количество квартир: 37</p>
+        <h1>Блок № {{ block_data_8.number }}</h1>
+        <p>Дата сдачи: {{ block_data_8.date|date:"d.m.Y" }}</p>
+        <p>Количество квартир: {{block_data_8.apartments_count}}</p>
       </div>
       <div class="glassCardd8">
-        <h1>Блок № 4</h1>
-        <p>Дата сдачи: 02.05.205</p>
-        <p>Количество квартир: 37</p>
+        <h1>Блок № {{ block_data_4.number }}</h1>
+        <p>Дата сдачи: {{ block_data_4.date|date:"d.m.Y" }}</p>
+        <p>Количество квартир: {{block_data_4.apartments_count}}</p>
       </div>
       <div class="glassCardd9">
-        <h1>Блок № 5</h1>
-        <p>Дата сдачи: 02.05.205</p>
-        <p>Количество квартир: 37</p>
+        <h1>Блок № {{ block_data_5.number }}</h1>
+        <p>Дата сдачи: {{ block_data_5.date|date:"d.m.Y" }}</p>
+        <p>Количество квартир: {{block_data_5.apartments_count}}</p>
       </div>
       <div class="glassCardd10">
-        <h1>Блок № 6</h1>
-        <p>Дата сдачи: 02.05.205</p>
-        <p>Количество квартир: 37</p>
+        <h1>Блок № {{ block_data_6.number }}</h1>
+        <p>Дата сдачи: {{ block_data_6.date|date:"d.m.Y" }}</p>
+        <p>Количество квартир: {{block_data_6.apartments_count}}</p>
       </div>
       <div class="glassCardd11">
-        <h1>Блок № 7</h1>
-        <p>Дата сдачи: 02.05.205</p>
-        <p>Количество квартир: 37</p>
+        <h1>Блок № {{ block_data_7.number }}</h1>
+        <p>Дата сдачи: {{ block_data_7.date|date:"d.m.Y" }}</p>
+        <p>Количество квартир: {{block_data_7.apartments_count}}</p>
       </div>
+
     </div>
 
     <svg class="glavnoe_svg" width="1440" height="900" viewBox="0 0 1440 900" fill="none"
@@ -212,7 +213,7 @@
 
       <path class="st0 oneHome2"
         d="M295.5 218.5L299 235.5L305.5 231L317.5 238L340.5 219.5L362 230.5L377 239L383.5 233.5L401 243L418 252L415.5 255L416 258L421 261L419 250L418 249.5V246.5L419.5 244.5L417 243V240L413.5 237.5L435.5 220V215L434 214V211.5L430.5 208.5L458 186.5L469.5 193L480.5 184L489 177.5L524.5 194.5L530 189.5L532.5 191L532 186L529 156L528 142L527.5 130.5L528.5 130L527 127L525.5 108.5L527 108V105.5L525 102.5L524.5 100.5H525.5V97.5L526 96L520.5 87.5L522 87V76L524 74L511 53.5L500.5 56L491 40.5L465.5 46.5L463.5 43L435.5 50L437.5 54L411.5 61L412 62L405.5 63.5L401.5 57.5L361 68.5L364.5 74.5L354.5 77V75.5L327.5 82.5L325.5 78.5L297 86L298.5 90L271.5 97L274.5 104L273.5 109.5L277 114L270 116.5L277 134.5L280.5 151H279.5L283 161.5L292.5 208.5L291.5 209.5L295.5 218.5Z"
-        fill="#3D5ECE" fill-opacity="0.4"></path>
+        fill="#3D5ECE" fill-opacity="0.4" href = "./index.html"></path>
       <path class="st0 oneHome3"
         d="M436 219.5L413.5 237.5L416.5 239.5L417 243L419.5 244.5L418 246.5V249L419 249.5L421 260.5L462 282L459 285V288.5L457.5 290L460 292L460.5 295L459 296.5L461 312.5L470 317.5L492.5 298L534.5 318.5L540 314L577 333L577.5 336L575 340L582.5 343.5L599.5 352.5L605 347L604.5 326L606 324L603.5 323L601 270L601.5 267.5V264.5L600.5 245.5V242L598.5 240.5L600.5 238L600 236L603 232.5L560 212V209L562.5 206L530 189.5L524.5 194.5L489 177L469.5 193L458 186.5L430.5 208.5L434 211L434.5 214L436 215V219.5Z"
         fill="#3D5ECE" fill-opacity="0.4"></path>
@@ -222,7 +223,7 @@
       <path class="st0 oneHome5"
         d="M591.5 435.5L567 458.5L571 461.5V464.5L573 466L571.5 468V471V475.5L569 478.5L572.5 480.5L573 488L571 491.5L574 493V499L571.5 502.5L575 504.5L574.5 510.5L573 513.5L575.5 515.5L576 522.5L574 526L576.5 527.5V533.5L575 536.5L577 538.5L577.5 544.5L575 546.5L578.5 550.5V555.5L577 558.5L579.5 561V566.5L576.5 569L580 574L581 586.5L584 587.5L585.5 607.5L583 610.5L585 611.5L586 614L587.5 627.5C587.167 627.5 586.9 627.6 588.5 628C590.5 628.5 588 633.5 590.5 635.5C593 637.5 593.5 635 594 631.5C594.5 628 597 629 598.5 627.5C600 626 602.5 628.5 603 631C603.5 633.5 606.5 634.5 609 634.5C611.5 634.5 607 637 609 637.5C611 638 611 641 609.5 643C608 645 612 645.5 613 644.5C614 643.5 613.5 642.5 615.5 642.5C617.5 642.5 617.5 641 619 639.5C620.5 638 622 642 622 644C622 646 623.5 648 626.5 647.5C629.5 647 627.5 650.5 627 652C626.5 653.5 628 654.5 630 656.5C632 658.5 633 655.5 634 655.5C635 655.5 637 655.5 637 653C637 650.5 639 651.5 640 650.5C641 649.5 641.5 655.5 643 655.5C644.5 655.5 645 659 646 661.5C647 664 643.5 665 644.5 668C645.5 671 647.5 667.5 648 665C648.5 662.5 651 663.5 652.5 663C654 662.5 656 667 657.5 667.5C659 668 661 672.5 661 675C661 677.5 663.5 677 666 678C668.5 679 668.5 677.5 668.5 675.5C668.5 673.5 669.5 672.5 672 670.5C674.5 668.5 675 672 676.5 672.5C678 673 677 677 679.5 676C682 675 683 679.5 683.5 681.5C684 683.5 683 685.5 686 686.5C689 687.5 687.5 686.5 689 686C690.5 685.5 691 684.5 692.5 682.5C694 680.5 695.5 684.5 697 686.5C698.5 688.5 695.5 689 695 691C694.5 693 699 689.5 701 690.5C702.6 691.3 701.333 696.167 700.5 698.5L711.5 705L736 679.5L749 668V662L747.5 660L750.5 657.5V629.5L747.5 626.5L750.5 624L751 597H750V593.5L748.5 592L749.5 590.5L750 569.5L749 568L748.5 564.5L751 562.5L749 562L748.5 558.5L745.5 555.5L767 532V523L766 522V518L762 516L787.5 488L788 466.5L789 464.798V462L787 461L790 458.5V455.5L793 452L739.5 424V422L742.5 417.5L702 396.5L697 402L650.5 378.5L629 400L616 393L585.5 422L589 424V427L590.5 428L591.5 435.5Z"
         fill="#3D5ECE" fill-opacity="0.4"></path>
-      <path class="st0 oneHome6"
+      <path class="st0 oneHome6" 
         d="M767.5 531.5L745.5 556L748.5 558L749 561.5L751 563L748.5 564.5V567.5L750 570L749.5 586.5V589.5L748.5 591.5L750 592.5V596.5L751 597L750.5 623.5L747.5 626.5L750.5 629.5L750 658L747 660.5L750 663L748.5 701.5L745.5 705L748 706.5L748.5 709V720C748.667 720.167 749.1 720.9 749.5 722.5C750 724.5 752.5 725 753.5 725.5C754.3 725.9 753.167 728.333 752.5 729.5C753.667 730.167 756.6 731.7 759 732.5C762 733.5 759.5 731.5 761 730.5C762.5 729.5 762.5 728.5 763 726C763.5 723.5 765.5 726.5 768 725.5C770.5 724.5 771 728.5 772 731C773 733.5 774 733 775 735C776 737 778 738.5 776 740.5C774 742.5 778 746 779.5 746C781 746 781 743 781 740C781 737 782.5 740.5 784.5 740.5C786.5 740.5 785.5 738.5 786.5 736.5C787.5 734.5 790 738 791 740C792 742 791 742.5 791.5 745C792 747.5 794 745.5 795.5 746.5C797 747.5 795.5 750.5 795.5 753C795.5 755.5 798 755 800 756C802 757 803.5 756 803.5 754.5C803.5 753 807.5 752 810 750C812.5 748 811.5 751.5 811.5 755C811.5 758.5 813 758.5 812.5 761C812 763.5 814 766 815.5 767.5C817 769 819 767.5 819 765C819 762.5 821 764 823.5 762.5C826 761 825.5 764 827.5 765.5C829.5 767 828.5 769 830.5 769C832.5 769 832 773 833.5 775.5C835 778 836.5 775.5 839 776.5C841.5 777.5 841 775.5 842 773.5C843 771.5 845 773 848 772C851 771 852 775 852 777.5C852 780 855 780 857 781C859 782 858.5 787.5 861 789C863.5 790.5 864 789 864.5 785.5C865 782 869.5 785 870 789C870.5 793 874.5 792 876 793.5C877.2 794.7 875.5 797.667 874.5 799L883 805.5L908.5 776L916 781L937.5 751.5L939 745L955.5 723L952.5 720.5L951 718.5L952 704.5L955 699L953 697.5L958.5 658L961 654L959.5 653L964 623.5L966.5 620L965 619L969 591.5L971 588.5L973.5 565L975 561.5L974.5 557.5L981 548L922 518L926.5 512L882 489L876.5 494L825.5 468L804.5 491.5L791 485L762 516L765.5 518.5V521.5L767 522L767.5 531.5Z"
         fill="#3D5ECE" fill-opacity="0.4"></path>
       <path class="st0 oneHome7"
@@ -256,148 +257,33 @@
     <div class="papa">
       <div class="select-box">
         <div class="select-box__current" tabindex="1">
-          <div class="select-box__value">
-            <input class="select-box__input" type="radio" id="0" value="1" name="Ben" checked="checked" />
-            <p class="select-box__input-text">Блок № 1</p>
-          </div>
-          <div class="select-box__value">
-            <input class="select-box__input" type="radio" id="1" value="2" name="Ben" />
-            <p class="select-box__input-text">Блок № 2</p>
-          </div>
-          <div class="select-box__value">
-            <input class="select-box__input" type="radio" id="2" value="3" name="Ben" />
-            <p class="select-box__input-text">Блок № 3</p>
-          </div>
-          <div class="select-box__value">
-            <input class="select-box__input" type="radio" id="3" value="4" name="Ben" />
-            <p class="select-box__input-text">Блок № 4</p>
-          </div>
-          <div class="select-box__value">
-            <input class="select-box__input" type="radio" id="4" value="5" name="Ben" />
-            <p class="select-box__input-text">Блок № 5</p>
-          </div>
-          <div class="select-box__value">
-            <input class="select-box__input" type="radio" id="5" value="6" name="Ben" />
-            <p class="select-box__input-text">Блок № 6</p>
-          </div>
-          <div class="select-box__value">
-            <input class="select-box__input" type="radio" id="6" value="7" name="Ben" />
-            <p class="select-box__input-text">Блок № 7</p>
-          </div>
-          <div class="select-box__value">
-            <input class="select-box__input" type="radio" id="7" value="8" name="Ben" />
-            <p class="select-box__input-text">Блок № 8</p>
-          </div>
-          <img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg' %}" alt="Arrow Icon"
-            aria-hidden="true" />
+            <div class="select-box__value">
+                {% for block in blocks %}
+                    <input class="select-box__input" type="radio" id="block_{{ block.number }}" value="{{ block.number }}" name="block" {% if forloop.first %}checked="checked"{% endif %} />
+                    <p class="select-box__input-text">Блок: {{ block.number }}</p>
+                {% endfor %}
+            </div>
+            <img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg" alt="Arrow Icon" aria-hidden="true" />
         </div>
         <ul class="select-box__list">
-          <li>
-            <label class="select-box__option" for="0" aria-hidden="aria-hidden">Блок № 1</label>
-          </li>
-          <li>
-            <label class="select-box__option" for="1" aria-hidden="aria-hidden">Блок № 2 </label>
-          </li>
-          <li>
-            <label class="select-box__option" for="2" aria-hidden="aria-hidden">Блок № 3</label>
-          </li>
-          <li>
-            <label class="select-box__option" for="3" aria-hidden="aria-hidden">Блок № 4 </label>
-          </li>
-          <li>
-            <label class="select-box__option" for="4" aria-hidden="aria-hidden">Блок № 5</label>
-          </li>
-          <li>
-            <label class="select-box__option" for="5" aria-hidden="aria-hidden">Блок № 6</label>
-          </li>
-          <li>
-            <label class="select-box__option" for="6" aria-hidden="aria-hidden"> Блок № 7</label>
-          </li>
-          <li>
-            <label class="select-box__option" for="6" aria-hidden="aria-hidden"> Блок № 8</label>
-          </li>
+            {% for block in blocks %}
+                <li>
+                    <label class="select-box__option" for="block_{{ block.number }}" aria-hidden="aria-hidden">Блок: {{ block.number }}</label>
+                </li>
+            {% endfor %}
         </ul>
-      </div>
+    </div>
+
       <div class="genPlanButtons">
         <div class="genPlanButtonsItem genPlanButtonsItemAcive">Все кв</div>
         <div class="genPlanButtonsItem">2ур</div>
       </div>
       <br /><br />
-
-      <div class="flats-grid">
-        <span>12 этаж</span>
-        <div class="flat-cell">4.1</div>
-        <div class="flat-cell__sold">10</div>
-        <div class="flat-cell">12</div>
-        <div class="flat-cell">2.1</div>
-        <div class="flat-cell__blocked"></div>
-        <span>11 этаж</span>
-        <div class="flat-cell">4.1</div>
-        <div class="flat-cell__sold">10</div>
-        <div class="flat-cell__blocked"></div>
-        <div class="flat-cell__blocked"></div>
-        <div class="flat-cell__sold"></div>
-        <span>10 этаж</span>
-        <div class="flat-cell__sold">4.1</div>
-        <div class="flat-cell__sold">10</div>
-        <div class="flat-cell__blocked"></div>
-        <div class="flat-cell__sold">2.1</div>
-        <div class="flat-cell__sold">18</div>
-        <span>9 этаж</span>
-        <div class="flat-cell__blocked"></div>
-        <div class="flat-cell__blocked"></div>
-        <div class="flat-cell__sold">12</div>
-        <div class="flat-cell__sold">2.1</div>
-        <div class="flat-cell__sold">18</div>
-        <span>8 этаж</span>
-        <div class="flat-cell__blocked"></div>
-        <div class="flat-cell__sold">10</div>
-        <div class="flat-cell__blocked"></div>
-        <div class="flat-cell__blocked"></div>
-        <div class="flat-cell">18</div>
-        <span>7 этаж</span>
-        <div class="flat-cell">4.1</div>
-        <div class="flat-cell__sold"></div>
-        <div class="flat-cell">12</div>
-        <div class="flat-cell__sold"></div>
-        <div class="flat-cell__sold"></div>
-        <span>6 этаж</span>
-        <div class="flat-cell__sold"></div>
-        <div class="flat-cell__sold"></div>
-        <div class="flat-cell__sold"></div>
-        <div class="flat-cell__sold"></div>
-        <div class="flat-cell">18</div>
-        <span>5 этаж</span>
-        <div class="flat-cell__sold">4.1</div>
-        <div class="flat-cell__sold">10</div>
-        <div class="flat-cell__sold">12</div>
-        <div class="flat-cell__sold">2.1</div>
-        <div class="flat-cell__sold">18</div>
-        <span>4 этаж</span>
-        <div class="flat-cell__sold">4.1</div>
-        <div class="flat-cell__sold">10</div>
-        <div class="flat-cell__sold">12</div>
-        <div class="flat-cell">2.1</div>
-        <div class="flat-cell">18</div>
-        <span>3 этаж</span>
-        <div class="flat-cell__sold"></div>
-        <div class="flat-cell__sold"></div>
-        <div class="flat-cell__sold"></div>
-        <div class="flat-cell__blocked"></div>
-        <div class="flat-cell__sold"></div>
-        <span>2 этаж</span>
-        <div class="flat-cell__sold">4.1</div>
-        <div class="flat-cell__sold">10</div>
-        <div class="flat-cell__blocked"></div>
-        <div class="flat-cell__sold">2.1</div>
-        <div class="flat-cell__sold">18</div>
-        <span>1 этаж</span>
-        <div class="flat-cell__sold">4.1</div>
-        <div class="flat-cell__sold">10</div>
-        <div class="flat-cell__blocked"></div>
-        <div class="flat-cell__sold">2.1</div>
-        <div class="flat-cell__sold"></div>
+      
+      <div id="flats-container">
+        <!-- Здесь будет динамический контент -->
       </div>
+      
       <br /><br />
       <div>
         <p class="popo">* Цена указана в миллионах сомах</p>
@@ -440,7 +326,7 @@
       </div>
     </div>
     <div class="moreZoneLeft">
-      <main class="main" style="padding: 0 0 30px 0; margin: 0;">
+      <!-- <main class="main" style="padding: 0 0 30px 0; margin: 0;">
 
         <h1 id="title" style="margin-bottom: 20px; margin-top: 0;">
           Двухкомнатная <u style="color: #b37d68">квартира 89, 78м²</u>
@@ -450,15 +336,19 @@
           <u style="color: black; text-decoration: none"> Подъезд 1, кв. №37</u>
         </p>
         <br />
-      </main>
+      </main> -->
       <div class="moreZoneLeftImageContainer">
-        <br /><br /><br />
+    
+        <h1>Двухкомнатная квартира 89, 76м2</h1>
+        <br>
+        <p>Подъезд 1, кв. №37</p>
+        <br /><br /><br><br>
         <div id="showMoreImageopenModal" class="moreZoneLeftImageContainerIMage">
           <img id="onFloor" src="{% static 'assets/img/vkjclp4nkff4x10ierq76tt5ej1wgi6v.jpg.png' %}" alt="" />
           <img style="display: none" id="plan"
-            src="https://nurzaman.vercel.app/static/media/FlatView3.a90723f2ab2a54a5d5c7.png' %}" alt="" />
+            src="https://nurzaman.vercel.app/static/media/FlatView3.a90723f2ab2a54a5d5c7.png" alt="" />
           <img style="display: none" id="onObjekt"
-            src="https://nurzaman.vercel.app/static/media/FlatView1.dde98582df99ed1eb7b7.png' %}" alt="" />
+            src="https://nurzaman.vercel.app/static/media/FlatView1.dde98582df99ed1eb7b7.png" alt="" />
         </div>
 
         <br /><br /><br />
@@ -791,7 +681,7 @@
     <div class="modal1">
       <div class="madalHead">
         <h1>Отправить данные на Whatsapp</h1>
-        <svg id="closesendWhatsapModal" style="cursor: pointer" xmlns="http://www.w3.org/2000/svg" width="29"
+        <svg id="sendWhatsapModalClose" style="cursor: pointer" xmlns="http://www.w3.org/2000/svg" width="29"
           height="29" viewBox="0 0 29 29" fill="none">
           <line x1="7.07234" y1="7.07024" x2="21.2145" y2="21.2124" stroke="#909090" stroke-width="2" />
           <line x1="21.213" y1="7.07039" x2="7.07083" y2="21.2125" stroke="#909090" stroke-width="2" />
@@ -915,23 +805,68 @@
     </div>
   </div>
   <script>
-    const onHight = document.getElementById('onHight');
-    const onDay = document.getElementById('onDay');
+    // JavaScript для обработки выбора блока и AJAX запроса к серверу
+    document.addEventListener('DOMContentLoaded', function() {
+        // Получение всех радио-кнопокz
+        const blockInputs = document.querySelectorAll('.select-box__input');
+        const flatsContainer = document.getElementById('flats-container');
+        
+    
+        blockInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                fetch('/ajax/get_floors_and_apartments/?block_number=' + this.value)
+                    .then(response => response.json())
+                    .then(data => {
+                        flatsContainer.innerHTML = ''; // Очищаем предыдущие данные
+                        flatsContainer.className = 'FlatsFlexBoxPArent'
+                        // Здесь ваш код для добавления новых данных в flatsContainer
+                        // Например:
+                        data.floors.forEach(floor => {
+                            const floorDiv = document.createElement('div');
+                            
+                            floorDiv.innerHTML = `${floor.floor_title} Этаж`;
+                            flatsContainer.appendChild(floorDiv);
 
-    const dayPLaning = document.getElementById('dayPLaning');
-    const NightPLaning = document.getElementById('NightPLaning');
-    onDay.addEventListener('click', () => {
-      dayPLaning.style.display = 'block';
-      NightPLaning.style.display = 'none';
-    });
-    onHight.addEventListener('click', () => {
-      dayPLaning.style.display = 'none';
-      NightPLaning.style.display = 'block';
+    
+                            const apartmentsList = data.apartments.filter(apartment => apartment.block == this.value && apartment.floor == floor.floor_title);
+                           
+                            apartmentsList.forEach(apartment => {
+                                const apartmentDiv = document.createElement('a');
+                                apartmentDiv.href=`/genplaning_detail/${apartment.apartment_id}/`
+                                apartmentDiv.className= 'flat-cell'
+                                apartmentDiv.innerHTML = ` ${apartment.block}: ${apartment.floor}`;
+                                if(apartment.status === 1){
+                                  apartmentDiv.innerHTML=''
+                                  apartmentDiv.className= 'flat-cell__blocked flat1'
+                                }else  if(apartment.status === 2){
+                                  apartmentDiv.className= 'floorItemINGenPlanMINCardBron flat2'
+                                } if(apartment.status === 3){
+                                  apartmentDiv.className= 'floorItemINGenPlanMINCardBron flat3'
+                                } if(apartment.status === 4){
+                                  apartmentDiv.className= 'floorItemINGenPlanMINCardBron flat4'
+                                }
+                                floorDiv.appendChild(apartmentDiv);
+                             
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Ошибка:', error);
+                    });
+            });
+        });
     });
   </script>
- <script src="{% static 'assets/js/sharer.min.js' %}"></script>
+    
+  <script src="{% static 'assets/js/sharer.min.js' %}"></script>
   <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
   <script src="{% static 'assets/js/script.js' %}"></script>
-</body>
 
+<!-- Ваш HTML код... -->
+
+<!-- Добавьте этот скрипт перед закрывающим тегом </body> -->
+
+  <!-- Закрывающий тег body -->
+</body>
+  
 </html>

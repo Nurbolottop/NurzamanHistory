@@ -28,3 +28,48 @@ class Contact(models.Model):
 
 ################################################################################################################################################################################
 
+class Messages(models.Model):
+    name = models.CharField(
+        max_length  = 255,
+        verbose_name = "Имя"
+    )
+    phone = models.CharField(
+        max_length  = 255,
+        verbose_name = "Тел.ном"
+    )
+    email = models.EmailField(
+        verbose_name = "Почта"
+    )
+    message = models.TextField(
+        verbose_name = "Сообщение"
+    )
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = "Заявка на Вопрос"
+        verbose_name_plural = "Заявки на Вопросы"
+
+class View(models.Model):
+    name = models.CharField(
+        max_length  = 255,
+        verbose_name = "Имя"
+    )
+    phone = models.CharField(
+        max_length  = 255,
+        verbose_name = "Тел.ном"
+    )
+    email = models.EmailField(
+        verbose_name = "Почта"
+    )
+    message = models.TextField(
+        verbose_name = "Сообщение"
+    )
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = "Заявка на Просмотр"
+        verbose_name_plural = "Заявки на Просмотры"

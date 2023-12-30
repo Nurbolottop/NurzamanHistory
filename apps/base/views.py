@@ -34,18 +34,21 @@ def index(request):
             number = request.POST.get('number')
             consent = request.POST.get('consent') == 'on'  # Проверка, что чекбокс был отмечен
             if consent:
-                get_text(f"""
-                Оставлена заявка на обратный звонок
-                Имя пользователя: {name}
-                emai: {email}
-                Номер телефона: {number}""")
-            if consent:
-                contact = Contact.objects.create(name =name, email = email,number = number)
+                contact = Contact.objects.create(name=name, email=email, number=number)
                 send_mail(
                     f'{name}',
-                    f'Здравствуйте {name},Спасибо за обратную связь, Мы скоро свами свяжемся. Ваша почта: {email}',
+                    f'Здравствуйте {name}, Спасибо за обратную связь, Мы скоро свами свяжемся. Ваша почта: {email}',
                     "noreply@somehost.local",
                     [email])
+            if consent:
+                get_text(f"""
+                ✅Оставлена заявка на обратный звонок
+                         
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                         
+Имя пользователя: {name}
+emai: {email}
+Номер телефона: {number}""")
                 return redirect('index')
         if "call2" in request.POST:
             name = request.POST.get('name2')
@@ -53,15 +56,23 @@ def index(request):
             number = request.POST.get('number2')
             consent = request.POST.get('consent2') == 'on'  # Проверка, что чекбокс был отмечен
             if consent:
-                contact = Contact.objects.create(name =name, email = email,number = number)
+                contact = Contact.objects.create(name=name, email=email, number=number)
                 send_mail(
                     f'{name}',
-                    f'Здравствуйте {name},Спасибо за обратную связь, Мы скоро свами свяжемся. Ваша почта: {email}',
+                    f'Здравствуйте {name}, Спасибо за обратную связь, Мы скоро свами свяжемся. Ваша почта: {email}',
                     "noreply@somehost.local",
                     [email])
-            
+            if consent:
+                get_text(f"""
+                ✅Оставлена заявка на обратный звонок
+                         
+⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️⬇️
+                         
+Имя пользователя: {name}
+emai: {email}
+Номер телефона: {number}""")
                 return redirect('index')
-
+            
     return render(request,'base/index.html', locals())
 
 ################################################################################################################################################################################

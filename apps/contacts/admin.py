@@ -9,5 +9,12 @@ class ContactFilterAdmin(admin.ModelAdmin):
 
 ################################################################################################################################################################################
 
+class MessagesFilterAdmin(admin.ModelAdmin):
+    list_filter = ('name', 'email','phone' )
+    list_display = ('name', 'email','phone')
+    search_fields = ('name', 'email','phone')
 
+################################################################################################################################################################################
+
+admin.site.register(models.Messages, MessagesFilterAdmin)
 admin.site.register(models.Contact, ContactFilterAdmin)

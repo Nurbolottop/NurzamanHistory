@@ -36,3 +36,4 @@ class TelegramUser(models.Model):
     class Meta:
         verbose_name = "Пользователь телеграм"
         verbose_name_plural = "Пользователи телеграма"
+        

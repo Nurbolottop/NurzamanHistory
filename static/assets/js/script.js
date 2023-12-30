@@ -452,7 +452,7 @@ if (modalsOpenButtons.length) {
       navbar.style.zIndex = 1;
       document.body.style.overflow = 'hidden';
     };
-
+console.log(closeModalId, modalsOpenButtons)
     closeModalId.addEventListener('click', onClose);
     currentModal.children[0].addEventListener('click', onClose);
     el.onclick = onOpenModal;
@@ -552,7 +552,8 @@ if (price && price.textContent.trim()) {
   onChangeTexts();
 }
 
-
-Fancybox.bind('[data-fancybox="gallery"]', {
-  // Your custom options for a specific gallery
-});
+  
+  // Fancybox.bind('[data-fancybox="gallery"]', {
+  //   // Your custom options for a specific gallery
+  // });
+  
