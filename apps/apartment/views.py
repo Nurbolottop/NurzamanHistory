@@ -29,11 +29,10 @@ def catalog(request):
         apartments = apartments.filter(room_id=rooms_id)
 
     features = models.Osob.objects.all()
-    feature_id = request.GET.get('Ben')
+    feature_id = request.GET.get('Ben')  # Получаем ID выбранной особенности из запроса
 
-    # Если выбрана особенность и она не равна "0", фильтруем квартиры по этой особенности
     if feature_id and feature_id != "0":
-        apartments = apartments.filter(apartmentosob__title__id=feature_id)
+        apartments = apartments.filter(apartmentosob__title_id=feature_id)
 
 # фильтрация квартир по Цене, Площади, Этажам
     search_form = ApartmentSearchForm(request.GET or None)
