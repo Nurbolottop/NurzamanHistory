@@ -161,7 +161,7 @@ class Apartment(models.Model):
         verbose_name="Фотография на объекте",
         blank = True,null=True
     )
-    price = models.FloatField(
+    price = models.IntegerField(
         verbose_name = "Цена"
     )
     exploitation = models.CharField(
@@ -240,14 +240,22 @@ class Apartment(models.Model):
 
 ################################################################################################################################################################################
 
-class ApartmentOsob(models.Model):
-    settings = models.ForeignKey(Apartment, related_name='choise_image', on_delete=models.CASCADE)
+class Osob(models.Model):
     title = models.CharField(
         max_length = 255,
-        verbose_name = "Название"
+        verbose_name = "Название особенности"
     )
+    
     def __str__(self):
         return self.title
+    
+    class Meta:
+        verbose_name = "Добавить Особенность"
+        verbose_name_plural = "Добавить Особенности"
+
+class ApartmentOsob(models.Model):
+    settings = models.ForeignKey(Apartment, related_name='apartmentosob', on_delete=models.CASCADE)
+    title = models.ForeignKey(Osob,related_name = "osob",on_delete = models.CASCADE)
     
     class Meta:
         unique_together = ('settings', 'title')

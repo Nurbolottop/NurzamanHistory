@@ -39,6 +39,13 @@ class BlockFilterAdmin(admin.ModelAdmin):
 
 ################################################################################################################################################################################
 
+class OsobFilterAdmin(admin.ModelAdmin):
+    list_filter = ('title', )
+    list_display = ('title',)
+    search_fields = ('title',)
+
+################################################################################################################################################################################
+
 class ApartmentInline(admin.TabularInline):
     model = models.ApartmentOsob
     extra = 1
@@ -57,3 +64,5 @@ admin.site.register(models.Status,StatusFilterAdmin)
 admin.site.register(models.Apartment,ApartmentFilterAdmin)
 admin.site.register(models.Floor,FloorFilterAdmin)
 admin.site.register(models.Block,BlockFilterAdmin)
+admin.site.register(models.Osob,OsobFilterAdmin)
+

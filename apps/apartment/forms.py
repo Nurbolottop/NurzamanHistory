@@ -11,6 +11,5 @@ class ApartmentSearchForm(forms.Form):
     category = forms.ModelChoiceField(queryset=Category.objects.all(), required=False, label='Категория')
     rooms = forms.ModelChoiceField(queryset=Rooms.objects.all(), required=False, label='Количество комнат')
     status = forms.ModelChoiceField(queryset=Status.objects.all(), required=False, label='Статус')
-    min_floor = forms.IntegerField(required=False, min_value=0)
-    max_floor = forms.IntegerField(required=False, max_value=11)
+    
     # Здесь вы можете добавить любые дополнительные поля, которые вам нужны для фильтрации

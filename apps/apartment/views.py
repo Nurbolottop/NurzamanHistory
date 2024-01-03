@@ -10,22 +10,34 @@ from apps.apartment.forms import ApartmentSearchForm
 
 # Create your views here.
 def catalog(request):
-    #base
+#base
     settings = Settings.objects.latest("id")
     apartments = models.Apartment.objects.all()
 
-    # категории квартир
+# фильтрация квартир по категории
     categories = models.Category.objects.all()
     category_id = request.GET.get('category')
 
-    # фильтрация квартир по категории
     if category_id:
         apartments = apartments.filter(category__id=category_id)
 
-# Инициализация формы поиска
+# фильтрация квартир по комнатам
+    rooms = models.Rooms.objects.all()
+    rooms_id = request.GET.get("room")
+
+    if rooms_id:
+        apartments = apartments.filter(room_id=rooms_id)
+
+    features = models.Osob.objects.all()
+    feature_id = request.GET.get('Ben')
+
+    # Если выбрана особенность и она не равна "0", фильтруем квартиры по этой особенности
+    if feature_id and feature_id != "0":
+        apartments = apartments.filter(apartmentosob__title__id=feature_id)
+
+# фильтрация квартир по Цене, Площади, Этажам
     search_form = ApartmentSearchForm(request.GET or None)
 
-    # Обработка AJAX-запроса
     if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
         if search_form.is_valid():
             apartments = apartments.filter(
@@ -37,6 +49,7 @@ def catalog(request):
                 floor__title__lte=search_form.cleaned_data.get('max_floor', 11),
            
             )
+            apartment_count = apartments.count()
             apartments_data = list(apartments.values(
             'id', 
             'category__title', 
@@ -45,23 +58,20 @@ def catalog(request):
             'status__title', 
             'razmer', 
             'price',
-            'layote',  # убедитесь, что это поле существует в модели
-            'floor__title',  # убедитесь, что это поле существует в модели
-            # Добавьте другие поля, которые вы хотите отправить
+            'layote',  
+            'floor__title'
             ))
+            print(request.GET)
             for apt in apartments_data:
                 apt['layote_url'] = apt['layote'] and getattr(models.Apartment.objects.get(pk=apt['id']).layote, 'url', '')
-            return JsonResponse({'results': apartments_data}, safe=False)
+            return JsonResponse({'results': apartments_data,'apartment_count': apartment_count}, safe=False)
         else:
             return JsonResponse({'error': search_form.errors}, status=400)
-    # комнаты
-    rooms = models.Rooms.objects.all()
-    rooms_id = request.GET.get("room")
 
-    if rooms_id:
-        apartments = apartments.filter(room_id=rooms_id)
+#подсчет количество квартир    
+    apartment_count = apartments.count()
 
-    # контактная информация
+# Контактная информация и отправка POST запросов
     contactinfo = ContactInfo.objects.latest('id')
     if request.method == "POST":
         if "call1" in request.POST:

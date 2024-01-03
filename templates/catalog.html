@@ -199,69 +199,33 @@
                         fill="white" />
                 </svg>min_price
             </button> -->
-          <div class="select-box">
-            <div class="select-box__current" tabindex="1">
-              <div class="select-box__value">
-                <input class="select-box__input" type="radio" id="0" value="0" name="Ben" checked="checked" />
-                <p class="select-box__input-text">Дополнительные параметры</p>
+            
+            <div class="select-box">
+              <div class="select-box__current" tabindex="1">
+                <div class="select-box__value">
+                  <input class="select-box__input" type="radio" id="0" value="0" name="Ben" checked="checked" />
+                  <p class="select-box__input-text">Дополнительные параметры</p>
+                </div>
+                <img
+                  class="select-box__icon"
+                  src="http://cdn.onlinewebfonts.com/svg/img_295694.svg"
+                  alt="Arrow Icon"
+                  aria-hidden="true"
+                />
               </div>
-              <div class="select-box__value">
-                <input class="select-box__input" type="radio" id="1" value="2" name="Ben" />
-                <p class="select-box__input-text">2 санузла</p>
-              </div>
-              <div class="select-box__value">
-                <input class="select-box__input" type="radio" id="2" value="3" name="Ben" />
-                <p class="select-box__input-text">Гардеробная</p>
-              </div>
-              <div class="select-box__value">
-                <input class="select-box__input" type="radio" id="3" value="4" name="Ben" />
-                <p class="select-box__input-text">Кухня-гостиная</p>
-              </div>
-              <div class="select-box__value">
-                <input class="select-box__input" type="radio" id="4" value="5" name="Ben" />
-                <p class="select-box__input-text">Лоджия</p>
-              </div>
-              <div class="select-box__value">
-                <input class="select-box__input" type="radio" id="5" value="6" name="Ben" />
-                <p class="select-box__input-text">Постирочная</p>
-              </div>
-              <div class="select-box__value">
-                <input class="select-box__input" type="radio" id="6" value="7" name="Ben" />
-                <p class="select-box__input-text">Терраса</p>
-              </div>
-              <img
-                class="select-box__icon"
-                src="http://cdn.onlinewebfonts.com/svg/img_295694.svg"
-                alt="Arrow Icon"
-                aria-hidden="true"
-              />
+              <ul class="select-box__list">
+                {% for features in features %}
+                <li>
+                  <a href="{% url 'catalog' %}?ban={{ features.id }}" class="select-box__option" for="0" aria-hidden="aria-hidden">{{features.title}}</a>
+                </li>
+                {% endfor %}
+              </ul>
             </div>
-            <ul class="select-box__list">
-              <li>
-                <label class="select-box__option" for="0" aria-hidden="aria-hidden">2 лоджи</label>
-              </li>
-              <li>
-                <label class="select-box__option" for="1" aria-hidden="aria-hidden">2 санузла </label>
-              </li>
-              <li>
-                <label class="select-box__option" for="2" aria-hidden="aria-hidden">Гардеробная</label>
-              </li>
-              <li>
-                <label class="select-box__option" for="3" aria-hidden="aria-hidden">Кухня-гостиная </label>
-              </li>
-              <li>
-                <label class="select-box__option" for="4" aria-hidden="aria-hidden">Лоджия</label>
-              </li>
-              <li>
-                <label class="select-box__option" for="5" aria-hidden="aria-hidden">Постирочная</label>
-              </li>
-              <li>
-                <label class="select-box__option" for="6" aria-hidden="aria-hidden"> Терраса</label>
-              </li>
-            </ul>
-          </div>
 
-          <div class="ahahha">Мы подобрали для вас квартир: 8</div>
+          
+            
+
+          <div class="ahahha">Мы подобрали для вас квартир: {{apartment_count}}</div>
           <div class="sbrosit">
             <svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" viewBox="0 0 7 7" fill="none">
               <path
@@ -386,7 +350,7 @@
                         <br />
                         <div class="cardFlatInf">
                             <p>Этаж:</p>
-                            <h2>${apartment.floor__title || ''}</h2>
+                            <h2>${apartment.floor__title || ''} из</h2>
                         </div>
                         <div class="cardFlatInf">
                             <p>Стоимость:</p>
@@ -407,9 +371,9 @@
                 </a>
             `;
             flatList.insertAdjacentHTML('beforeend', apartmentElement);
-        });
-    }
-    
+          });
+      }
+      
   
       // Функция для отправки AJAX-запроса
       function sendFilterRequest() {
@@ -435,6 +399,7 @@
               },
               success: function (response) {
                   // Обновление списка квартир на странице
+                  $('.ahahha').text('Мы подобрали для вас квартир: ' + response.apartment_count);
                   updateApartmentList(response.results);
               },
               error: function (xhr, status, error) {
@@ -455,8 +420,8 @@
           updateSliderDisplay(); // Первоначальное обновление значений слайдеров
       });
     </script>
-  
-  <!-- Конец тега body -->
+    
+      
   </body>
   
   </body>
