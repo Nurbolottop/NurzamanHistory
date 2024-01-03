@@ -339,7 +339,7 @@
       </main> -->
       <div class="moreZoneLeftImageContainer">
     
-        <h1>{{apartment.room}} квартира {{apartment.razmer}}</h1>
+        <h1>{{apartment.room}} квартира {{apartment.razmer}} м²</h1>
         <br>
         {% if apartment.info%}
         <p>{{apartment.info}}</p>
@@ -485,7 +485,7 @@
           </div>
           <div>
             <h1>Тип планировок</h1>
-            <h2>{{apartment.layot_text}}</h2>
+            <h2>{{apartment.layout_text}}</h2>
           </div>
         </div>
 
@@ -493,7 +493,7 @@
         <div class="filtersINMoreZone flexGrow2">
           <h1>Особенности</h1>
           <div class="FilterListINmore">
-            {% for apartment in apartment.choise_image.all%}
+            {% for apartment in  apartment.choise_image.all%}
               <div class="moreZoneFilterItem">{{apartment.title}}</div>
               {% endfor %}
           </div>

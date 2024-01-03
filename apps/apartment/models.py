@@ -129,9 +129,8 @@ class Apartment(models.Model):
         verbose_name = "Выбрерите статус"
     )
 
-    razmer = models.CharField(
-        max_length = 255,
-        verbose_name = "Размер"
+    razmer = models.FloatField(
+        verbose_name = "Введите размер"
     )
     info = models.CharField(
         max_length = 255,
@@ -162,8 +161,7 @@ class Apartment(models.Model):
         verbose_name="Фотография на объекте",
         blank = True,null=True
     )
-    price = models.CharField(
-        max_length = 255,
+    price = models.FloatField(
         verbose_name = "Цена"
     )
     exploitation = models.CharField(

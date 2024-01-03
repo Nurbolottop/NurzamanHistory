@@ -5,7 +5,8 @@ from apps.base.models import Settings,ContactInfo
 from apps.apartment import models
 from apps.telegram_bot.views import get_text
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.http import JsonResponse
+from apps.apartment.forms import ApartmentSearchForm
 
 # Create your views here.
 def catalog(request):
@@ -21,6 +22,38 @@ def catalog(request):
     if category_id:
         apartments = apartments.filter(category__id=category_id)
 
+# Инициализация формы поиска
+    search_form = ApartmentSearchForm(request.GET or None)
+
+    # Обработка AJAX-запроса
+    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+        if search_form.is_valid():
+            apartments = apartments.filter(
+                price__gte=search_form.cleaned_data.get('min_price', 0),
+                price__lte=search_form.cleaned_data.get('max_price', 1000000000),
+                razmer__gte=search_form.cleaned_data.get('min_size', 0),
+                razmer__lte=search_form.cleaned_data.get('max_size', 1000),
+                floor__title__gte=search_form.cleaned_data.get('min_floor', 0),
+                floor__title__lte=search_form.cleaned_data.get('max_floor', 11),
+           
+            )
+            apartments_data = list(apartments.values(
+            'id', 
+            'category__title', 
+            'info',
+            'room__title', 
+            'status__title', 
+            'razmer', 
+            'price',
+            'layote',  # убедитесь, что это поле существует в модели
+            'floor__title',  # убедитесь, что это поле существует в модели
+            # Добавьте другие поля, которые вы хотите отправить
+            ))
+            for apt in apartments_data:
+                apt['layote_url'] = apt['layote'] and getattr(models.Apartment.objects.get(pk=apt['id']).layote, 'url', '')
+            return JsonResponse({'results': apartments_data}, safe=False)
+        else:
+            return JsonResponse({'error': search_form.errors}, status=400)
     # комнаты
     rooms = models.Rooms.objects.all()
     rooms_id = request.GET.get("room")

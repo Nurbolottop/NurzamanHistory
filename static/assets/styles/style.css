@@ -27,7 +27,9 @@
     scroll-behavior: smooth;
   }
 }
-
+#min_size_val,#max_price_val,#min_floor_val,#max_floor_val,#min_price_val,#max_size_val{
+  display: none;
+}
 a{
   cursor: pointer;
 }

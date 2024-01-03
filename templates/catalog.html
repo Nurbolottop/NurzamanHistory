@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'assets/styles/style.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/styles/swiperStyle.css' %}" /> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <title>Nurzaman</title>
   </head>
 
@@ -149,45 +151,45 @@
             {% endfor %}
 
           </div>
+          <!-- Слайдер для стоимости -->
           <div>
             <h2>Стоимость, в сомах</h2>
             <br /><br />
-            <div>
-              <div class="range-slider">
-                <input type="range" id="min_price" name="min_price"  min="1" max="100" step="1" value="0000" class="range-slider__input" />
-                <input type="range"  id="max_price" name="max_price"min="1" max="100" step="1" value="100000" class="range-slider__input" />
-                <div class="range-slider__display">
-                  <!-- This node is optional and only used to display the current values -->
-                </div>
+            <div class="range-slider">
+              <input type="range" id="min_price" name="min_price" min="1" max="100000" value="1" class="range-slider__input" />
+              <input type="range" id="max_price" name="max_price" min="1" max="100000" value="100000" class="range-slider__input" />
+              <div id="price_display" class="range-slider__display">
+                 <span id="min_price_val"></span> <span id="max_price_val">100000</span>
               </div>
             </div>
           </div>
+
+          <!-- Слайдер для площади -->
           <div>
             <h2>Площадь, м2</h2>
             <br /><br />
-            <div>
-              <div class="range-slider">
-                <input type="range" min="0" max="100" step="1" value="0" class="range-slider__input" />
-                <input type="range" min="0" max="100" step="1" value="100" class="range-slider__input" />
-                <div class="range-slider__display">
-                  <!-- This node is optional and only used to display the current values -->
-                </div>
+            <div class="range-slider">
+              <input type="range" id="min_size" name="min_size" min="0" max="200" value="1" class="range-slider__input" />
+              <input type="range" id="max_size" name="max_size" min="0" max="200" value="200" class="range-slider__input" />
+              <div id="size_display" class="range-slider__display" >
+                 <span style='oposity:0' id="min_size_val">1</span> <span style='opacity: 0;display:none'id="max_size_val">200</span>
               </div>
             </div>
           </div>
+
+          <!-- Слайдер для этажа -->
           <div>
             <h2>Этаж</h2>
             <br /><br />
-            <div>
-              <div class="range-slider">
-                <input type="range" min="0" max="100" step="1" value="0" class="range-slider__input" />
-                <input type="range" min="0" max="100" step="1" value="100" class="range-slider__input" />
-                <div class="range-slider__display">
-                  <!-- This node is optional and only used to display the current values -->
-                </div>
+            <div class="range-slider">
+              <input type="range" id="min_floor" name="min_floor" min="0" max="11" value="0" class="range-slider__input" />
+              <input type="range" id="max_floor" name="max_floor" min="0" max="11" value="11" class="range-slider__input" />
+              <div id="floor_display" class="range-slider__display">
+                 <span id="min_floor_val">0</span>  <span id="max_floor_val">11</span>
               </div>
             </div>
           </div>
+
 
           <!-- <button id="checkboxListOpen" class="filtermoreBtn">
                 Дополнительные параметры
@@ -195,7 +197,7 @@
                     <path
                         d="M0.206748 0.206748C0.457352 -0.0438557 0.849506 -0.0666378 1.12585 0.138402L1.20502 0.206748L7.29412 6.29553L13.3832 0.206748C13.6338 -0.0438557 14.026 -0.0666378 14.3023 0.138402L14.3815 0.206748C14.6321 0.457352 14.6549 0.849506 14.4498 1.12585L14.3815 1.20502L7.79325 7.79325C7.54265 8.04386 7.15049 8.06664 6.87415 7.8616L6.79498 7.79325L0.206748 1.20502C-0.0689161 0.929352 -0.0689161 0.482412 0.206748 0.206748Z"
                         fill="white" />
-                </svg>
+                </svg>min_price
             </button> -->
           <div class="select-box">
             <div class="select-box__current" tabindex="1">
@@ -283,7 +285,7 @@
         <a href="{% url 'planing' apartment.id %}">
           <div class="flatListCard">
             <div class="cardHead">
-              <h1>{{apartment.room}} квартира {{apartment.razmer}}</h1>
+              <h1>{{apartment.room}} квартира {{apartment.razmer}} м²</h1>
               <p>{{apartment.info}}</p>
             </div>
             {% if apartment.status%}
@@ -291,7 +293,7 @@
             {% endif %}
             <br />
             <div class="cardFlatImage">
-              <img src="{{apartment.layote.url}}" style="max-width:350px;"              alt="" />
+              <img src="{{apartment.layote.url}}" style="max-width:350px;" alt="" />
             </div>
             <br />
             <div class="cardFlatInf">
@@ -334,5 +336,128 @@
 
     <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
     <script src="{% static 'assets/js/script.js' %}"></script>
+    <!-- Остальной HTML -->
+    <script>
+      // Функция для получения значения CSRF-токена из cookies
+      function getCSRFToken() {
+          const name = 'csrftoken';
+          let cookieValue = null;
+          if (document.cookie && document.cookie !== '') {
+              const cookies = document.cookie.split(';');
+              for (let i = 0; i < cookies.length; i++) {
+                  const cookie = cookies[i].trim();
+                  if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                      break;
+                  }
+              }
+          }
+          return cookieValue;
+      }
+  
+      // Функция для обновления отображаемых значений слайдеров
+      function updateSliderDisplay() {
+          document.getElementById('min_price_val').textContent = document.getElementById('min_price').value;
+          document.getElementById('max_price_val').textContent = document.getElementById('max_price').value;
+          document.getElementById('min_size_val').textContent = document.getElementById('min_size').value;
+          document.getElementById('max_size_val').textContent = document.getElementById('max_size').value;
+          document.getElementById('min_floor_val').textContent = document.getElementById('min_floor').value;
+          document.getElementById('max_floor_val').textContent = document.getElementById('max_floor').value;
+      }
+  
+      // Функция для обновления списка квартир на странице
+      function updateApartmentList(apartmentsData) {
+        const flatList = document.querySelector('.flatList');
+        flatList.innerHTML = ''; // Очистить текущий список
+    
+        apartmentsData.forEach(apartment => {
+            const apartmentElement = `
+                <a href="/planing/${apartment.id}">
+                    <div class="flatListCard">
+                        <div class="cardHead">
+                            <h1>${apartment.room__title} квартира ${apartment.razmer} м²</h1>
+                            <p>${apartment.info || ''}</p>
+                        </div>
+                        ${apartment.status__title ? `<button class="flatMetka">${apartment.status__title}</button>` : ''}
+                        <br />
+                        <div class="cardFlatImage">
+                            <img src="${apartment.layote_url || ''}" style="max-width:350px;" alt="" />
+                        </div>
+                        <br />
+                        <div class="cardFlatInf">
+                            <p>Этаж:</p>
+                            <h2>${apartment.floor__title || ''}</h2>
+                        </div>
+                        <div class="cardFlatInf">
+                            <p>Стоимость:</p>
+                            <h1>${apartment.price} с</h1>
+                        </div>
+                        <br />
+                        <div class="cardFootFlat">
+                            <div>
+                                <h1>Стандартный платеж <img width="14px" src="{% static 'assets/svg/div.tooltip-circle.svg' %}" alt="" /></h1>
+                                <h1>Ваш платеж <img width="14px" src="{% static 'assets/svg/div.tooltip-circle — копия.svg' %}" alt="" /></h1>
+                            </div>
+                            <div>
+                                <h2>от 80 453 с/мес.</h2>
+                                <h3>от 54 535 с/мес.</h3>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            `;
+            flatList.insertAdjacentHTML('beforeend', apartmentElement);
+        });
+    }
+    
+  
+      // Функция для отправки AJAX-запроса
+      function sendFilterRequest() {
+          const csrftoken = getCSRFToken(); // Получение CSRF-токена
+          const minPrice = document.getElementById('min_price').value;
+          const maxPrice = document.getElementById('max_price').value;
+          const minSize = document.getElementById('min_size').value;
+          const maxSize = document.getElementById('max_size').value;
+          const minFloor = document.getElementById('min_floor').value;
+          const maxFloor = document.getElementById('max_floor').value;
+          
+          // Отправка AJAX-запроса на сервер
+          $.ajax({
+              url: '/catalog/', // URL, который обрабатывает ваш запрос на стороне сервера
+              type: 'GET', 
+              data: {
+                  'min_price': minPrice,
+                  'max_price': maxPrice,
+                  'min_size': minSize,
+                  'max_size': maxSize,
+                  'min_floor': minFloor,
+                  'max_floor': maxFloor
+              },
+              success: function (response) {
+                  // Обновление списка квартир на странице
+                  updateApartmentList(response.results);
+              },
+              error: function (xhr, status, error) {
+                  console.error('AJAX Error:', error);
+              }
+          });
+      }
+  
+      // Обработчики событий для слайдеров
+      document.addEventListener('DOMContentLoaded', function() {
+          let sliders = document.querySelectorAll('.range-slider__input');
+          sliders.forEach(function(input) {
+              input.addEventListener('input', function() {
+                  updateSliderDisplay();
+                  sendFilterRequest();
+              });
+          });
+          updateSliderDisplay(); // Первоначальное обновление значений слайдеров
+      });
+    </script>
+  
+  <!-- Конец тега body -->
+  </body>
+  
   </body>
 </html>

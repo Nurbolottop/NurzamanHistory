@@ -116,10 +116,10 @@
       <p class="bredCrumps">
         Главная - Каталог квартир -
         <u style="color: black; text-decoration: none">
-          {{apartment.room}} квартира {{apartment.razmer}}</u>
+          {{apartment.room}} квартира {{apartment.razmer}} м²</u>
       </p>
       <h1 id="title">
-        {{apartment.title}} <u style="color: #b37d68">квартира {{apartment.razmer}}</u>
+        {{apartment.room}} <u style="color: #b37d68">квартира {{apartment.razmer}} м²</u>
       </h1>
       {% if apartment.info%}
       <p class="bredCrumps">
@@ -358,7 +358,7 @@
             <a href="{% url 'planing' apartment.id%}">
               <div class="flatListCard" style="width: 100% !important">
                 <div class="cardHead">
-                  <h1>{{apartment.room}} квартира {{apartment.razmer}}</h1>
+                  <h1>{{apartment.room}} квартира {{apartment.razmer}} м²</h1>
                   {% if apartment.info%}
                   <p>{{apartment.info}}</p>
                   {% endif%}
@@ -473,7 +473,7 @@
         <br />
         <div class="modalInf">
           <h1>
-            <span> {{apartment.title}} квартира </span>
+            <span> {{apartment.room}} квартира </span>
             <br />
             <br />
             <p>{{apartment.info}}</p>
