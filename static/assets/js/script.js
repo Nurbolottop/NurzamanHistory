@@ -452,7 +452,7 @@ if (modalsOpenButtons.length) {
       navbar.style.zIndex = 1;
       document.body.style.overflow = 'hidden';
     };
-console.log(closeModalId, modalsOpenButtons)
+    console.log(closeModalId);
     closeModalId.addEventListener('click', onClose);
     currentModal.children[0].addEventListener('click', onClose);
     el.onclick = onOpenModal;
@@ -517,6 +517,7 @@ if (price && price.textContent.trim()) {
   const paymentRange = document.getElementById('paymentRange');
   const paymentInput = document.getElementById('paymentInput');
   const numberPrice = numbersFromNubersWithSpaces(price.textContent);
+  console.log('adik test');
 
   document.getElementById('calculatePayment').addEventListener('click', () => {
     paymentRange.value = paymentInput.value;

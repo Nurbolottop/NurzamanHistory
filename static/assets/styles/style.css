@@ -2043,6 +2043,7 @@ a {
 }
 
 .select-box__value {
+  padding: 18px;
   display: flex;
 }
 
@@ -2064,7 +2065,7 @@ a {
   display: none;
   width: 100%;
   margin: 0;
-  padding: 15px;
+
   background-color: #fff;
   padding-right: 45px;
 }
